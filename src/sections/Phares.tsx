@@ -7,10 +7,38 @@ import { useLanguage } from "@/components/LanguageProvider";
 import { initScrollReveal } from "@/lib/scrollReveal";
 
 const PHARES = [
-  { src: "/products/lait-1800.png",   bg: "#1D5D2B", accent: "#F4D233", flip: false },
-  { src: "/products/mayonnaise.png",  bg: "#F4D233", accent: "#1D5D2B", flip: true  },
-  { src: "/products/ketchup.png",     bg: "#D92525", accent: "#fff",    flip: false },
-  { src: "/products/makayabu.png",    bg: "#4F8F38", accent: "#F4D233", flip: true  },
+  {
+    src: "/products/lait-1800.png",
+    bg: "linear-gradient(145deg, #1D5D2B 0%, #2d7a3a 100%)",
+    solidBg: "#1D5D2B",
+    accent: "#F4D233",
+    glow: "rgba(29,93,43,0.45)",
+    featured: false,
+  },
+  {
+    src: "/products/mayonnaise.png",
+    bg: "linear-gradient(145deg, #F4D233 0%, #f7dc5a 100%)",
+    solidBg: "#F4D233",
+    accent: "#1D5D2B",
+    glow: "rgba(244,210,51,0.55)",
+    featured: true,
+  },
+  {
+    src: "/products/ketchup.png",
+    bg: "linear-gradient(145deg, #D92525 0%, #e83535 100%)",
+    solidBg: "#D92525",
+    accent: "#fff",
+    glow: "rgba(217,37,37,0.45)",
+    featured: false,
+  },
+  {
+    src: "/products/makayabu.png",
+    bg: "linear-gradient(145deg, #4F8F38 0%, #5fa344 100%)",
+    solidBg: "#4F8F38",
+    accent: "#F4D233",
+    glow: "rgba(79,143,56,0.45)",
+    featured: false,
+  },
 ];
 
 export default function Phares() {
@@ -25,121 +53,193 @@ export default function Phares() {
   const items = t("phares.items") as Array<{ name: string; desc: string; tag: string }>;
 
   return (
-    <section id="phares" ref={sectionRef} className="overflow-hidden" style={{ background: "#FFF8EC" }}>
-      {/* Section header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 lg:pt-28 pb-12 text-center">
-        <div className="sr inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5 text-xs font-black uppercase tracking-widest"
-          style={{ background: "rgba(29,93,43,0.08)", color: "#1D5D2B" }}>
-          <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#1D5D2B" }} />
-          {t("phares.badge") as string}
+    <section
+      id="phares"
+      ref={sectionRef}
+      className="overflow-hidden py-20 lg:py-28"
+      style={{ background: "linear-gradient(180deg, #fff 0%, #FFF8EC 60%, #fff 100%)" }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Header */}
+        <div className="sr text-center mb-14">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5 text-xs font-black uppercase tracking-widest"
+            style={{ background: "rgba(29,93,43,0.08)", color: "#1D5D2B" }}>
+            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#F4D233", boxShadow: "0 0 8px #F4D233" }} />
+            {t("phares.badge") as string}
+          </span>
+          <h2 className="font-black text-[#1a1a1a] leading-tight mb-3" style={{ fontSize: "clamp(1.9rem,4vw,3.2rem)" }}>
+            {t("phares.title") as string}
+          </h2>
+          <p className="text-[#222]/55 max-w-md mx-auto text-base">{t("phares.subtitle") as string}</p>
         </div>
-        <h2 className="sr font-black text-[#222] leading-tight mb-3" style={{ fontSize: "clamp(1.8rem,4vw,3rem)" }}>
-          {t("phares.title") as string}
-        </h2>
-        <p className="sr text-[#222]/60 max-w-lg mx-auto">{t("phares.subtitle") as string}</p>
-      </div>
 
-      {/* Alternating rows */}
-      <div className="flex flex-col gap-0">
-        {PHARES.map((ph, i) => {
-          const item = Array.isArray(items) ? items[i] : null;
-          if (!item) return null;
-          const isFlipped = ph.flip;
+        {/* Desktop: featured center grid — Mobile: horizontal scroll */}
+        <div
+          className="flex gap-5 lg:gap-6 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 snap-x snap-mandatory lg:snap-none lg:grid lg:grid-cols-4"
+          style={{ scrollbarWidth: "none" }}
+        >
+          {PHARES.map((ph, i) => {
+            const item = Array.isArray(items) ? items[i] : null;
+            if (!item) return null;
 
-          return (
-            <div
-              key={i}
-              className={`relative overflow-hidden py-16 lg:py-24`}
-              style={{ background: i % 2 === 0 ? "#fff" : "#FFF8EC" }}
-            >
-              {/* Ambient glow */}
-              <div className="absolute pointer-events-none rounded-full hidden lg:block"
+            return (
+              <motion.div
+                key={i}
+                className="group relative flex-shrink-0 snap-center flex flex-col cursor-pointer"
                 style={{
-                  width: 400, height: 400,
-                  [isFlipped ? "right" : "left"]: "-80px",
-                  top: "50%", transform: "translateY(-50%)",
-                  background: ph.bg,
-                  filter: "blur(80px)",
-                  opacity: 0.12,
+                  width: "clamp(260px, 72vw, 320px)",
+                  minWidth: "clamp(260px, 72vw, 320px)",
                 }}
-              />
-
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className={`flex flex-col ${isFlipped ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-12 lg:gap-20`}>
-
-                  {/* Product image */}
-                  <div className={`sr ${isFlipped ? "sr-right" : "sr-left"} flex-shrink-0`}>
+                initial={{ opacity: 0, y: 32 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ delay: i * 0.1, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: ph.featured ? -10 : -8, scale: ph.featured ? 1.01 : 1.01 }}
+              >
+                {/* Card shell */}
+                <div
+                  className="relative flex flex-col overflow-hidden h-full transition-all duration-400"
+                  style={{
+                    borderRadius: 28,
+                    background: "#fff",
+                    border: ph.featured
+                      ? `2.5px solid ${ph.solidBg}`
+                      : "1.5px solid rgba(29,93,43,0.08)",
+                    boxShadow: ph.featured
+                      ? `0 8px 32px ${ph.glow}, 0 2px 8px rgba(0,0,0,0.06)`
+                      : "0 4px 20px rgba(29,93,43,0.07)",
+                    transform: ph.featured ? "translateY(-12px)" : "none",
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLElement).style.boxShadow =
+                      `0 24px 64px ${ph.glow}, 0 4px 16px rgba(0,0,0,0.10)`;
+                    (e.currentTarget as HTMLElement).style.borderColor = ph.solidBg;
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLElement).style.boxShadow = ph.featured
+                      ? `0 8px 32px ${ph.glow}, 0 2px 8px rgba(0,0,0,0.06)`
+                      : "0 4px 20px rgba(29,93,43,0.07)";
+                    (e.currentTarget as HTMLElement).style.borderColor = ph.featured
+                      ? ph.solidBg
+                      : "rgba(29,93,43,0.08)";
+                  }}
+                >
+                  {/* Featured ribbon */}
+                  {ph.featured && (
                     <div
-                      className="relative rounded-3xl flex items-center justify-center"
+                      className="absolute top-4 left-1/2 -translate-x-1/2 z-20 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap"
+                      style={{ background: ph.solidBg, color: ph.accent, boxShadow: `0 4px 16px ${ph.glow}` }}
+                    >
+                      ⭐ Bestseller
+                    </div>
+                  )}
+
+                  {/* Image area */}
+                  <div
+                    className="relative flex items-center justify-center overflow-hidden"
+                    style={{
+                      height: ph.featured ? 280 : 240,
+                      background: ph.bg,
+                      borderRadius: "26px 26px 0 0",
+                    }}
+                  >
+                    {/* Glossy sheen */}
+                    <div
+                      className="absolute inset-0 pointer-events-none"
+                      style={{ background: "linear-gradient(150deg, rgba(255,255,255,0.20) 0%, transparent 55%)", borderRadius: "26px 26px 0 0" }}
+                    />
+
+                    {/* Radial glow on hover */}
+                    <div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
+                      style={{ background: `radial-gradient(circle at 50% 65%, rgba(255,255,255,0.18) 0%, transparent 65%)` }}
+                    />
+
+                    {/* Floating product image */}
+                    <motion.div
+                      className="relative"
+                      style={{ width: ph.featured ? 200 : 168, height: ph.featured ? 200 : 168 }}
+                      animate={{ y: [0, -10, 0] }}
+                      transition={{ duration: 4 + i * 0.5, ease: "easeInOut", repeat: Infinity, delay: i * 0.35 }}
+                    >
+                      <Image
+                        src={ph.src}
+                        alt={item.name}
+                        fill
+                        sizes="220px"
+                        quality={82}
+                        loading="lazy"
+                        className="object-contain transition-transform duration-500 group-hover:scale-[1.08]"
+                        style={{ filter: `drop-shadow(0 16px 32px rgba(0,0,0,0.35))` }}
+                      />
+                    </motion.div>
+
+                    {/* Tag badge — bottom-left of image area */}
+                    <div
+                      className="absolute bottom-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider"
                       style={{
-                        width: "clamp(220px, 32vw, 380px)",
-                        height: "clamp(280px, 40vw, 460px)",
-                        background: ph.bg,
-                        boxShadow: `0 32px 80px ${ph.bg}55`,
+                        background: "rgba(255,255,255,0.22)",
+                        backdropFilter: "blur(8px)",
+                        color: ph.accent,
+                        border: `1px solid ${ph.accent}44`,
                       }}
                     >
-                      {/* Glossy */}
-                      <div className="absolute inset-0 rounded-3xl pointer-events-none"
-                        style={{ background: "linear-gradient(145deg, rgba(255,255,255,0.18) 0%, transparent 55%)" }} />
-
-                      <motion.div
-                        className="relative w-4/5 h-4/5"
-                        animate={{ y: [0, -12, 0] }}
-                        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: i * 0.4 }}
-                      >
-                        <Image
-                          src={ph.src}
-                          alt={item.name}
-                          fill
-                          sizes="380px"
-                          quality={80}
-                          loading="lazy"
-                          className="object-contain"
-                          style={{ filter: "drop-shadow(0 16px 40px rgba(0,0,0,0.45))" }}
-                        />
-                      </motion.div>
-
-                      {/* Tag badge */}
-                      <div className="absolute top-4 right-4 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest"
-                        style={{ background: `${ph.accent}22`, color: ph.accent, border: `1px solid ${ph.accent}44` }}>
-                        {item.tag}
-                      </div>
+                      {item.tag}
                     </div>
                   </div>
 
-                  {/* Text */}
-                  <div className="sr flex-1">
-                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest mb-5"
-                      style={{ background: `${ph.bg}15`, color: ph.bg }}>
-                      <span className="w-1.5 h-1.5 rounded-full" style={{ background: ph.bg }} />
-                      {item.tag}
-                    </span>
-                    <h3 className="font-black text-[#222] leading-tight mb-4"
-                      style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.6rem)" }}>
+                  {/* Content */}
+                  <div className="flex flex-col flex-1 px-5 pt-4 pb-5 gap-2">
+                    <h3
+                      className="font-black leading-tight text-[#1a1a1a]"
+                      style={{ fontSize: ph.featured ? "1.15rem" : "1rem" }}
+                    >
                       {item.name}
                     </h3>
-                    <p className="text-[#222]/65 leading-relaxed mb-8"
-                      style={{ fontSize: "clamp(0.9rem, 1.2vw, 1.05rem)", maxWidth: 480 }}>
+                    <p className="text-[#444]/70 text-xs leading-relaxed flex-1" style={{ minHeight: 48 }}>
                       {item.desc}
                     </p>
+
+                    {/* CTA */}
                     <motion.a
                       href="#produits"
                       whileHover={{ scale: 1.04 }}
                       whileTap={{ scale: 0.97 }}
-                      className="inline-flex items-center gap-2.5 font-black rounded-full px-7 py-3 text-sm shadow-lg"
-                      style={{ background: ph.bg, color: ph.accent }}
+                      className="inline-flex items-center justify-center gap-2 font-black rounded-2xl text-sm mt-1 transition-all duration-300"
+                      style={{
+                        background: ph.solidBg,
+                        color: ph.accent,
+                        padding: ph.featured ? "12px 20px" : "10px 18px",
+                        boxShadow: `0 6px 24px ${ph.glow}`,
+                      }}
                     >
                       {t("phares.discover") as string}
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
                     </motion.a>
                   </div>
                 </div>
-              </div>
-            </div>
-          );
-        })}
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Mobile scroll indicator dots */}
+        <div className="flex lg:hidden justify-center gap-2 mt-6">
+          {PHARES.map((_, i) => (
+            <span
+              key={i}
+              className="rounded-full transition-all duration-300"
+              style={{
+                width: i === 1 ? 20 : 6,
+                height: 6,
+                background: i === 1 ? "#1D5D2B" : "rgba(29,93,43,0.2)",
+              }}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
