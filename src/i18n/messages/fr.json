@@ -1,0 +1,154 @@
+{
+  "metadata": {
+    "title": "Bon Appétit RDC — Votre Cuisine Complète",
+    "description": "Bon Appétit est une marque alimentaire familiale complète qui accompagne les familles congolaises à chaque repas du quotidien.",
+    "keywords": "bon appétit, alimentation, cuisine, famille, RDC, Congo, sauces, lait, conserves, pâtes, makayabu"
+  },
+  "nav": {
+    "home": "Accueil",
+    "products": "Produits",
+    "categories": "Catégories",
+    "recipes": "Recettes",
+    "about": "À Propos",
+    "contact": "Contact",
+    "discover": "Découvrir nos produits"
+  },
+  "hero": {
+    "badge": "BON APPÉTIT RDC",
+    "title": "VOTRE CUISINE COMPLÈTE",
+    "subtitle": "Des produits de qualité qui accompagnent les familles congolaises dans chaque repas.",
+    "ctaPrimary": "Découvrir nos produits",
+    "ctaSecondary": "Nous contacter"
+  },
+  "products": {
+    "badge": "Notre Gamme",
+    "title": "Tous Nos Produits",
+    "subtitle": "Une gamme alimentaire complète pour chaque moment de votre cuisine",
+    "tabs": {
+      "all": "Tous",
+      "sauces": "Sauces",
+      "dairy": "Produits Laitiers",
+      "canned": "Conserves",
+      "pasta": "Pâtes",
+      "seafood": "Produits de la Mer",
+      "bakery": "Boulangerie",
+      "sweets": "Gourmandises"
+    },
+    "discover": "Découvrir",
+    "viewAll": "Voir toute la gamme"
+  },
+  "phares": {
+    "badge": "Produits Phares",
+    "title": "Nos Incontournables",
+    "subtitle": "Les produits qui font la fierté de Bon Appétit",
+    "discover": "Découvrir le produit",
+    "items": [
+      {
+        "name": "Lait Bon Appétit",
+        "desc": "Un lait en poudre riche et onctueux, formulé pour toute la famille congolaise. Disponible en formats 400g, 900g et 1.8kg.",
+        "tag": "Produits Laitiers"
+      },
+      {
+        "name": "Mayonnaise Bon Appétit",
+        "desc": "Onctueuse, savoureuse et crémeuse. La mayonnaise idéale pour sublimer vos recettes maison.",
+        "tag": "Sauces"
+      },
+      {
+        "name": "Ketchup Bon Appétit",
+        "desc": "Un ketchup savoureux à la tomate, parfait pour accompagner frites, burgers et toutes vos envies.",
+        "tag": "Sauces"
+      },
+      {
+        "name": "Makayabu Bon Appétit",
+        "desc": "Le poisson salé emblématique de la cuisine congolaise, préparé selon les traditions locales.",
+        "tag": "Produits de la Mer"
+      }
+    ]
+  },
+  "categories": {
+    "badge": "Nos Catégories",
+    "title": "Une Gamme Complète",
+    "subtitle": "Chaque catégorie pensée pour enrichir votre cuisine",
+    "items": [
+      { "name": "Sauces & Condiments", "desc": "Mayonnaise, Ketchup, Moutarde" },
+      { "name": "Produits Laitiers", "desc": "Lait en poudre 400g, 900g, 1.8kg" },
+      { "name": "Conserves", "desc": "Légumes, Corned Beef, Pilchards" },
+      { "name": "Produits de la Mer", "desc": "Makayabu, Sardines" },
+      { "name": "Pâtes Alimentaires", "desc": "Macaroni, Penne, Fusilli" },
+      { "name": "Boulangerie", "desc": "Levure Sèche Instantanée" },
+      { "name": "Gourmandises", "desc": "Choco Duo" }
+    ]
+  },
+  "recipes": {
+    "badge": "Recettes & Inspirations",
+    "title": "Cuisinez avec Bon Appétit",
+    "subtitle": "Des idées savoureuses pour chaque repas",
+    "readMore": "Voir la recette",
+    "items": [
+      { "title": "Poulet frit & Mayonnaise", "cat": "Sauce", "time": "45 min", "level": "Facile" },
+      { "title": "Frites maison dorées", "cat": "Sauce", "time": "30 min", "level": "Facile" },
+      { "title": "Petit-déjeuner familial", "cat": "Lait", "time": "15 min", "level": "Très facile" },
+      { "title": "Poisson Makayabu mijoté", "cat": "Mer", "time": "60 min", "level": "Moyen" },
+      { "title": "Spaghetti Bon Appétit", "cat": "Pâtes", "time": "25 min", "level": "Facile" },
+      { "title": "Burger & Ketchup maison", "cat": "Sauce", "time": "40 min", "level": "Moyen" }
+    ]
+  },
+  "values": {
+    "badge": "Nos Valeurs",
+    "title": "Ce Qui Nous Guide",
+    "subtitle": "Les piliers qui fondent la marque Bon Appétit",
+    "items": [
+      { "key": "quality", "title": "Qualité", "desc": "Des produits fabriqués selon les plus hauts standards pour votre table." },
+      { "key": "flavor", "title": "Saveur", "desc": "Des goûts authentiques qui font sourire toute la famille à chaque repas." },
+      { "key": "trust", "title": "Confiance", "desc": "Une marque fiable, présente dans les foyers congolais depuis des années." },
+      { "key": "availability", "title": "Disponibilité", "desc": "Nos produits accessibles partout sur toute l'étendue du territoire national." },
+      { "key": "innovation", "title": "Innovation", "desc": "Nous innovons constamment pour enrichir votre quotidien alimentaire." }
+    ]
+  },
+  "about": {
+    "badge": "À Propos",
+    "title": "Une Marque Familiale Congolaise",
+    "text": "Bon Appétit accompagne les familles africaines avec une large gamme de produits alimentaires conçus pour enrichir chaque repas du quotidien.",
+    "cta": "Nous contacter"
+  },
+  "stats": {
+    "badge": "Nos Chiffres",
+    "title": "Bon Appétit en Chiffres",
+    "items": [
+      { "value": "20", "suffix": "+", "label": "Produits" },
+      { "value": "1000", "suffix": "+", "label": "Points de vente" },
+      { "value": "Millions", "suffix": "", "label": "De repas préparés" },
+      { "value": "Présence", "suffix": "", "label": "Nationale" }
+    ]
+  },
+  "contact": {
+    "badge": "Contact",
+    "title": "Parlons Cuisine",
+    "subtitle": "Notre équipe est à votre écoute pour toute question sur nos produits.",
+    "form": {
+      "name": "Nom",
+      "phone": "Téléphone",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Envoyer",
+      "sending": "Envoi en cours...",
+      "success": "Merci ! Votre message a été envoyé.",
+      "error": "Une erreur est survenue. Veuillez réessayer.",
+      "namePlaceholder": "Votre nom complet",
+      "phonePlaceholder": "+243 ...",
+      "emailPlaceholder": "votre@email.com",
+      "messagePlaceholder": "Votre message..."
+    }
+  },
+  "footer": {
+    "tagline": "Votre Cuisine Complète — La marque alimentaire des familles congolaises",
+    "links": {
+      "company": "Entreprise",
+      "products": "Produits",
+      "support": "Support"
+    },
+    "copyright": "Tous droits réservés.",
+    "legal": "Mentions Légales",
+    "privacy": "Politique de Confidentialité"
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "metadata": {
+    "title": "Bon Appétit RDC — Your Complete Kitchen",
+    "description": "Bon Appétit is a complete family food brand accompanying Congolese families at every daily meal.",
+    "keywords": "bon appétit, food, kitchen, family, DRC, Congo, sauces, milk, canned goods, pasta, makayabu"
+  },
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "categories": "Categories",
+    "recipes": "Recipes",
+    "about": "About",
+    "contact": "Contact",
+    "discover": "Discover our products"
+  },
+  "hero": {
+    "badge": "BON APPÉTIT RDC",
+    "title": "YOUR COMPLETE KITCHEN",
+    "subtitle": "Quality products that accompany Congolese families at every meal.",
+    "ctaPrimary": "Discover our products",
+    "ctaSecondary": "Contact us"
+  },
+  "products": {
+    "badge": "Our Range",
+    "title": "All Our Products",
+    "subtitle": "A complete food range for every moment in your kitchen",
+    "tabs": {
+      "all": "All",
+      "sauces": "Sauces",
+      "dairy": "Dairy",
+      "canned": "Canned Goods",
+      "pasta": "Pasta",
+      "seafood": "Seafood",
+      "bakery": "Bakery",
+      "sweets": "Sweet Treats"
+    },
+    "discover": "Discover",
+    "viewAll": "View full range"
+  },
+  "phares": {
+    "badge": "Featured Products",
+    "title": "Our Iconic Products",
+    "subtitle": "The products that make Bon Appétit proud",
+    "discover": "Discover product",
+    "items": [
+      {
+        "name": "Bon Appétit Milk",
+        "desc": "A rich and creamy powdered milk, formulated for the whole Congolese family. Available in 400g, 900g and 1.8kg formats.",
+        "tag": "Dairy"
+      },
+      {
+        "name": "Bon Appétit Mayonnaise",
+        "desc": "Smooth, tasty and creamy. The ideal mayonnaise to elevate your homemade recipes.",
+        "tag": "Sauces"
+      },
+      {
+        "name": "Bon Appétit Ketchup",
+        "desc": "A delicious tomato ketchup, perfect to accompany fries, burgers and all your cravings.",
+        "tag": "Sauces"
+      },
+      {
+        "name": "Bon Appétit Makayabu",
+        "desc": "The iconic salted fish of Congolese cuisine, prepared according to local traditions.",
+        "tag": "Seafood"
+      }
+    ]
+  },
+  "categories": {
+    "badge": "Our Categories",
+    "title": "A Complete Range",
+    "subtitle": "Each category designed to enrich your cooking",
+    "items": [
+      { "name": "Sauces & Condiments", "desc": "Mayonnaise, Ketchup, Mustard" },
+      { "name": "Dairy Products", "desc": "Powdered milk 400g, 900g, 1.8kg" },
+      { "name": "Canned Goods", "desc": "Vegetables, Corned Beef, Pilchards" },
+      { "name": "Seafood", "desc": "Makayabu, Sardines" },
+      { "name": "Pasta", "desc": "Macaroni, Penne, Fusilli" },
+      { "name": "Bakery", "desc": "Instant Dry Yeast" },
+      { "name": "Sweet Treats", "desc": "Choco Duo" }
+    ]
+  },
+  "recipes": {
+    "badge": "Recipes & Inspiration",
+    "title": "Cook with Bon Appétit",
+    "subtitle": "Delicious ideas for every meal",
+    "readMore": "See recipe",
+    "items": [
+      { "title": "Fried Chicken & Mayonnaise", "cat": "Sauce", "time": "45 min", "level": "Easy" },
+      { "title": "Golden Homemade Fries", "cat": "Sauce", "time": "30 min", "level": "Easy" },
+      { "title": "Family Breakfast", "cat": "Milk", "time": "15 min", "level": "Very easy" },
+      { "title": "Makayabu Fish Stew", "cat": "Seafood", "time": "60 min", "level": "Medium" },
+      { "title": "Bon Appétit Spaghetti", "cat": "Pasta", "time": "25 min", "level": "Easy" },
+      { "title": "Burger & Homemade Ketchup", "cat": "Sauce", "time": "40 min", "level": "Medium" }
+    ]
+  },
+  "values": {
+    "badge": "Our Values",
+    "title": "What Guides Us",
+    "subtitle": "The pillars that define the Bon Appétit brand",
+    "items": [
+      { "key": "quality", "title": "Quality", "desc": "Products made to the highest standards for your table." },
+      { "key": "flavor", "title": "Flavor", "desc": "Authentic tastes that make the whole family smile at every meal." },
+      { "key": "trust", "title": "Trust", "desc": "A reliable brand present in Congolese households for years." },
+      { "key": "availability", "title": "Availability", "desc": "Our products accessible everywhere across the national territory." },
+      { "key": "innovation", "title": "Innovation", "desc": "We constantly innovate to enrich your daily food experience." }
+    ]
+  },
+  "about": {
+    "badge": "About Us",
+    "title": "A Congolese Family Brand",
+    "text": "Bon Appétit accompanies African families with a wide range of food products designed to enrich every daily meal.",
+    "cta": "Contact us"
+  },
+  "stats": {
+    "badge": "Our Numbers",
+    "title": "Bon Appétit by the Numbers",
+    "items": [
+      { "value": "20", "suffix": "+", "label": "Products" },
+      { "value": "1000", "suffix": "+", "label": "Sales Points" },
+      { "value": "Millions", "suffix": "", "label": "Meals Prepared" },
+      { "value": "National", "suffix": "", "label": "Presence" }
+    ]
+  },
+  "contact": {
+    "badge": "Contact",
+    "title": "Let's Talk Kitchen",
+    "subtitle": "Our team is available for any questions about our products.",
+    "form": {
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send",
+      "sending": "Sending...",
+      "success": "Thank you! Your message has been sent.",
+      "error": "An error occurred. Please try again.",
+      "namePlaceholder": "Your full name",
+      "phonePlaceholder": "+243 ...",
+      "emailPlaceholder": "your@email.com",
+      "messagePlaceholder": "Your message..."
+    }
+  },
+  "footer": {
+    "tagline": "Your Complete Kitchen — The food brand for Congolese families",
+    "links": {
+      "company": "Company",
+      "products": "Products",
+      "support": "Support"
+    },
+    "copyright": "All rights reserved.",
+    "legal": "Legal Notice",
+    "privacy": "Privacy Policy"
+  }
+}
