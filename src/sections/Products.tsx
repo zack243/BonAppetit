@@ -113,68 +113,76 @@ export default function Products() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-5"
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6"
           >
             {filtered.map((product, i) => {
               const tagColor = TAG_COLORS[product.tag] ?? { bg: "#1D5D2B", text: "#fff" };
               return (
                 <motion.div
                   key={product.id}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.05, duration: 0.4 }}
-                  className="group relative rounded-2xl overflow-hidden flex flex-col items-center cursor-pointer"
-                  style={{
-                    background: "#FFF8EC",
-                    border: "1.5px solid rgba(29,93,43,0.08)",
-                    boxShadow: "0 2px 12px rgba(29,93,43,0.06)",
-                  }}
-                  whileHover={{
-                    y: -6,
-                    boxShadow: "0 16px 40px rgba(29,93,43,0.18)",
-                    borderColor: "rgba(29,93,43,0.2)",
-                  }}
+                  transition={{ delay: i * 0.04, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  className="group relative flex flex-col cursor-pointer"
+                  style={{ borderRadius: 24 }}
+                  whileHover={{ y: -8 }}
                 >
-                  {/* Category badge */}
-                  <div className="absolute top-3 left-3 z-10">
-                    <span
-                      className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full"
-                      style={{ background: tagColor.bg, color: tagColor.text }}
-                    >
-                      {product.tag}
-                    </span>
-                  </div>
+                  {/* Card shell */}
+                  <div className="relative flex flex-col overflow-hidden h-full transition-all duration-300"
+                    style={{
+                      borderRadius: 24,
+                      background: "#fff",
+                      border: "1.5px solid rgba(29,93,43,0.07)",
+                      boxShadow: "0 4px 20px rgba(29,93,43,0.08)",
+                    }}
+                    onMouseEnter={e => {
+                      (e.currentTarget as HTMLElement).style.boxShadow = `0 20px 48px ${tagColor.bg}44, 0 4px 16px rgba(0,0,0,0.08)`;
+                      (e.currentTarget as HTMLElement).style.borderColor = tagColor.bg;
+                    }}
+                    onMouseLeave={e => {
+                      (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(29,93,43,0.08)";
+                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(29,93,43,0.07)";
+                    }}
+                  >
+                    {/* Image area with colored bg */}
+                    <div className="relative overflow-hidden flex items-center justify-center"
+                      style={{
+                        height: "clamp(140px, 19vw, 210px)",
+                        background: `linear-gradient(145deg, ${tagColor.bg}18 0%, ${tagColor.bg}08 100%)`,
+                        borderRadius: "22px 22px 0 0",
+                      }}>
+                      {/* Subtle radial glow on hover */}
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
+                        style={{ background: `radial-gradient(circle at 50% 60%, ${tagColor.bg}30 0%, transparent 70%)` }}
+                      />
+                      <Image
+                        src={product.src}
+                        alt={product.name}
+                        fill
+                        sizes="(max-width:640px) 45vw, (max-width:1024px) 30vw, 220px"
+                        quality={75}
+                        loading="lazy"
+                        className="object-contain transition-transform duration-500 group-hover:scale-[1.12] p-3"
+                        style={{ filter: "drop-shadow(0 8px 20px rgba(0,0,0,0.22))" }}
+                      />
+                    </div>
 
-                  {/* Product image */}
-                  <div className="relative w-full pt-8 pb-2 px-4"
-                    style={{ height: "clamp(130px, 18vw, 200px)" }}>
-                    <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      style={{ background: "radial-gradient(circle at 50% 70%, rgba(244,210,51,0.12) 0%, transparent 65%)" }}
-                    />
-                    <Image
-                      src={product.src}
-                      alt={product.name}
-                      fill
-                      sizes="(max-width:640px) 45vw, (max-width:1024px) 30vw, 220px"
-                      quality={72}
-                      loading="lazy"
-                      className="object-contain transition-transform duration-500 group-hover:scale-110"
-                      style={{ filter: "drop-shadow(0 6px 16px rgba(0,0,0,0.2))" }}
-                    />
-                  </div>
-
-                  {/* Name + CTA */}
-                  <div className="w-full px-4 pb-4 pt-2 text-center flex flex-col items-center gap-2">
-                    <h3 className="font-bold text-[#222] text-sm leading-tight">{product.name}</h3>
-                    <span
-                      className="inline-flex items-center gap-1 text-[11px] font-black transition-all duration-300 group-hover:gap-2"
-                      style={{ color: "#1D5D2B" }}
-                    >
-                      {t("products.discover") as string}
-                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </span>
+                    {/* Bottom content */}
+                    <div className="flex flex-col items-center text-center px-3 pt-3 pb-4 gap-2">
+                      {/* Tag badge */}
+                      <span className="text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full"
+                        style={{ background: tagColor.bg, color: tagColor.text }}>
+                        {product.tag}
+                      </span>
+                      <h3 className="font-black text-[#1a1a1a] text-sm leading-tight">{product.name}</h3>
+                      <span className="inline-flex items-center gap-1 text-[11px] font-black transition-all duration-300 group-hover:gap-2"
+                        style={{ color: "#1D5D2B" }}>
+                        {t("products.discover") as string}
+                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </span>
+                    </div>
                   </div>
                 </motion.div>
               );

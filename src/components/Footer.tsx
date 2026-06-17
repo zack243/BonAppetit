@@ -56,15 +56,16 @@ export default function Footer() {
   ];
 
   return (
-    <footer style={{ background: "#1D5D2B", color: "#fff" }} className="border-t border-white/[0.08]">
+    <footer style={{ background: "#F4D233", color: "#1D5D2B" }} className="border-t-4 border-[#1D5D2B]/10">
 
       {/* Marquee band */}
-      <div className="border-b border-white/[0.06] overflow-hidden py-3">
+      <div className="border-b border-[#1D5D2B]/10 overflow-hidden py-3"
+        style={{ background: "#1D5D2B" }}>
         <div className="flex whitespace-nowrap animate-marquee">
           {[...Array(2)].map((_, ri) => (
             <div key={ri} className="flex items-center gap-12 pr-12 flex-shrink-0">
               {["Qualité Premium", "Produits Certifiés", "1000+ Points de Vente", "Présence Nationale", "20+ Produits", "Cuisine Complète", "Familles Congolaises"].map((item, i) => (
-                <span key={i} className="flex items-center gap-3 text-white/80 text-xs font-semibold uppercase tracking-widest">
+                <span key={i} className="flex items-center gap-3 text-xs font-semibold uppercase tracking-widest" style={{ color: "#F4D233" }}>
                   <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: "#F4D233" }} />
                   {item}
                 </span>
@@ -87,11 +88,11 @@ export default function Footer() {
                 fill
                 sizes="160px"
                 quality={70}
-                className="object-contain brightness-0 invert"
+                className="object-contain"
               />
             </div>
-            <p className="text-white/80 text-sm leading-relaxed max-w-xs mb-7">
-              {t("footer.tagline")}
+            <p className="text-sm leading-relaxed max-w-xs mb-7" style={{ color: "rgba(29,93,43,0.75)" }}>
+              {t("footer.tagline") as string}
             </p>
             <div className="flex items-center gap-3">
               {socials.map((s) => (
@@ -101,17 +102,17 @@ export default function Footer() {
                   aria-label={s.label}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-xl flex items-center justify-center text-white/90 transition-all duration-300"
-                  style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)" }}
+                  className="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300"
+                  style={{ background: "rgba(29,93,43,0.10)", border: "1.5px solid rgba(29,93,43,0.15)", color: "#1D5D2B" }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "#F4D233";
-                    (e.currentTarget as HTMLElement).style.color = "#1D5D2B";
-                    (e.currentTarget as HTMLElement).style.borderColor = "#F4D233";
+                    (e.currentTarget as HTMLElement).style.background = "#1D5D2B";
+                    (e.currentTarget as HTMLElement).style.color = "#F4D233";
+                    (e.currentTarget as HTMLElement).style.borderColor = "#1D5D2B";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.07)";
-                    (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.9)";
-                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)";
+                    (e.currentTarget as HTMLElement).style.background = "rgba(29,93,43,0.10)";
+                    (e.currentTarget as HTMLElement).style.color = "#1D5D2B";
+                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(29,93,43,0.15)";
                   }}
                 >
                   {s.icon}
@@ -123,13 +124,18 @@ export default function Footer() {
           {/* Link columns */}
           {cols.map((col) => (
             <div key={col.title as string}>
-              <h3 className="text-white font-bold text-sm mb-5 uppercase tracking-widest">{col.title as string}</h3>
+              <h3 className="font-black text-sm mb-5 uppercase tracking-widest" style={{ color: "#1D5D2B" }}>
+                {col.title as string}
+              </h3>
               <ul className="space-y-3">
                 {col.links.map((link) => (
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      className="text-white/75 hover:text-[#F4D233] text-sm transition-colors duration-200"
+                      className="text-sm font-medium transition-colors duration-200"
+                      style={{ color: "rgba(29,93,43,0.70)" }}
+                      onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#1D5D2B"}
+                      onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "rgba(29,93,43,0.70)"}
                     >
                       {link.label as string}
                     </a>
@@ -142,14 +148,24 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/[0.06]">
+      <div className="border-t border-[#1D5D2B]/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-white/70 text-xs">
+          <p className="text-xs font-medium" style={{ color: "rgba(29,93,43,0.65)" }}>
             © {year} Bon Appétit RDC. {t("footer.copyright") as string}
           </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-white/70 hover:text-[#F4D233] text-xs transition-colors">{t("footer.legal") as string}</a>
-            <a href="#" className="text-white/70 hover:text-[#F4D233] text-xs transition-colors">{t("footer.privacy") as string}</a>
+            <a href="#" className="text-xs font-medium transition-colors"
+              style={{ color: "rgba(29,93,43,0.65)" }}
+              onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#1D5D2B"}
+              onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "rgba(29,93,43,0.65)"}>
+              {t("footer.legal") as string}
+            </a>
+            <a href="#" className="text-xs font-medium transition-colors"
+              style={{ color: "rgba(29,93,43,0.65)" }}
+              onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#1D5D2B"}
+              onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "rgba(29,93,43,0.65)"}>
+              {t("footer.privacy") as string}
+            </a>
           </div>
         </div>
       </div>

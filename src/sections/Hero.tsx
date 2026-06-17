@@ -17,14 +17,6 @@ const POS = [
   { x: 155,  y: 0,   scale: 0.84, zIndex: 2, opacity: 0.88 },
 ];
 
-const FLOATS = [
-  { emoji: "🍅", size: 38, top: "14%", left: "7%",  delay: 0,   dur: 5   },
-  { emoji: "🌿", size: 32, top: "72%", left: "4%",  delay: 1.4, dur: 6.5 },
-  { emoji: "🐟", size: 42, top: "18%", left: "93%", delay: 0.6, dur: 5.5 },
-  { emoji: "🍝", size: 36, top: "76%", left: "89%", delay: 2.0, dur: 7   },
-  { emoji: "🌶️", size: 30, top: "50%", left: "97%", delay: 0.9, dur: 4.5 },
-  { emoji: "🧅", size: 28, top: "42%", left: "2%",  delay: 2.3, dur: 6   },
-];
 
 export default function Hero() {
   const { t } = useLanguage();
@@ -47,18 +39,6 @@ export default function Hero() {
         style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "24px 24px" }}
       />
 
-      {/* Floating ingredients */}
-      {FLOATS.map((f, i) => (
-        <motion.div
-          key={i}
-          className="absolute pointer-events-none select-none hidden lg:block"
-          style={{ top: f.top, left: f.left, fontSize: f.size, lineHeight: 1 }}
-          animate={{ y: [0, -14, 0] }}
-          transition={{ duration: f.dur, ease: "easeInOut", repeat: Infinity, delay: f.delay }}
-        >
-          {f.emoji}
-        </motion.div>
-      ))}
 
       {/* DESKTOP */}
       <div className="hidden lg:flex absolute inset-0" style={{ paddingTop: 64 }}>
@@ -68,7 +48,7 @@ export default function Hero() {
           style={{ width: "45%", height: "100%", display: "flex", alignItems: "flex-end", paddingLeft: "5%" }}>
           <div className="relative w-full h-full">
             <Image
-              src="/hero.jpg"
+              src="/hero1.png"
               alt="Bon Appetit — Votre Cuisine Complete"
               fill
               priority
@@ -250,7 +230,7 @@ export default function Hero() {
       {/* MOBILE */}
       <div className="lg:hidden flex flex-col" style={{ minHeight: "92svh", maxHeight: "720px", paddingTop: 60 }}>
         <div className="relative flex-1 overflow-hidden" style={{ minHeight: "38%", maxHeight: "50%" }}>
-          <Image src="/hero.jpg" alt="Bon Appetit" fill priority sizes="100vw" quality={75}
+          <Image src="/hero1.png" alt="Bon Appetit" fill priority sizes="100vw" quality={75}
             className="object-contain" style={{ objectPosition: "bottom center" }} />
           <div className="absolute bottom-0 left-0 right-0 h-10 pointer-events-none"
             style={{ background: "linear-gradient(to top, rgba(29,93,43,0.6), transparent)" }} />
