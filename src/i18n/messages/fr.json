@@ -15,10 +15,13 @@
   },
   "hero": {
     "badge": "BON APPÉTIT RDC",
+    "tagline": "BON APPÉTIT RDC",
     "title": "VOTRE CUISINE COMPLÈTE",
-    "subtitle": "Des produits de qualité qui accompagnent les familles congolaises dans chaque repas.",
-    "ctaPrimary": "Découvrir nos produits",
-    "ctaSecondary": "Nous contacter"
+    "line1": "Votre Cuisine",
+    "line2": "Complète.",
+    "subtitle": "Une large gamme de produits alimentaires pour accompagner chaque repas du quotidien.",
+    "ctaPrimary": "Découvrir nos Produits",
+    "ctaSecondary": "En savoir plus"
   },
   "products": {
     "badge": "Notre Gamme",

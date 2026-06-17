@@ -15,10 +15,13 @@
   },
   "hero": {
     "badge": "BON APPÉTIT RDC",
+    "tagline": "BON APPÉTIT RDC",
     "title": "YOUR COMPLETE KITCHEN",
-    "subtitle": "Quality products that accompany Congolese families at every meal.",
-    "ctaPrimary": "Discover our products",
-    "ctaSecondary": "Contact us"
+    "line1": "Your Complete",
+    "line2": "Kitchen.",
+    "subtitle": "A wide range of food products to accompany every daily meal.",
+    "ctaPrimary": "Discover our Products",
+    "ctaSecondary": "Learn more"
   },
   "products": {
     "badge": "Our Range",

@@ -1,319 +1,316 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { useLanguage } from "@/components/LanguageProvider";
 
-const HERO_PRODUCTS = [
-  { src: "/products/mayonnaise.png", name: "Mayonnaise", category: "Sauces", bg: "#F4D233", accent: "#1D5D2B" },
-  { src: "/products/lait-1800.png",  name: "Lait 1.8kg",  category: "Produits Laitiers", bg: "#1D5D2B", accent: "#F4D233" },
-  { src: "/products/ketchup.png",    name: "Ketchup",    category: "Sauces", bg: "#D92525", accent: "#fff" },
-  { src: "/products/makayabu.png",   name: "Makayabu",   category: "Produits de la Mer", bg: "#4F8F38", accent: "#F4D233" },
-  { src: "/products/pilchards.png",  name: "Pilchards",  category: "Conserves", bg: "#F59E0B", accent: "#1D5D2B" },
-  { src: "/products/corned-beef.png",name: "Corned Beef",category: "Conserves", bg: "#222222", accent: "#F4D233" },
+const PRODUCTS = [
+  { src: "/products/mayonnaise.png",  name: "Mayonnaise",  size: "250ml", bg: "#F4D233", accent: "#1D5D2B" },
+  { src: "/products/lait-1800.png",   name: "Lait 1.8kg",  size: "1.8kg", bg: "#1D5D2B", accent: "#F4D233" },
+  { src: "/products/corned-beef.png", name: "Corned Beef", size: "340g",  bg: "#D92525", accent: "#fff"    },
 ];
 
-const FLOATING = [
-  { emoji: "🍅", size: 42, top: "12%", left: "8%", delay: 0, speed: 5 },
-  { emoji: "🌿", size: 36, top: "70%", left: "5%", delay: 1.2, speed: 6.5 },
-  { emoji: "🐟", size: 44, top: "20%", left: "92%", delay: 0.5, speed: 5.5 },
-  { emoji: "🍝", size: 38, top: "75%", left: "88%", delay: 1.8, speed: 7 },
-  { emoji: "🌶️", size: 34, top: "50%", left: "96%", delay: 0.8, speed: 4.5 },
-  { emoji: "🧅", size: 32, top: "40%", left: "3%", delay: 2.1, speed: 6 },
+const POS = [
+  { x: -155, y: 0,   scale: 0.84, zIndex: 1, opacity: 0.88 },
+  { x: 0,    y: -25, scale: 1,    zIndex: 3, opacity: 1    },
+  { x: 155,  y: 0,   scale: 0.84, zIndex: 2, opacity: 0.88 },
+];
+
+const FLOATS = [
+  { emoji: "🍅", size: 38, top: "14%", left: "7%",  delay: 0,   dur: 5   },
+  { emoji: "🌿", size: 32, top: "72%", left: "4%",  delay: 1.4, dur: 6.5 },
+  { emoji: "🐟", size: 42, top: "18%", left: "93%", delay: 0.6, dur: 5.5 },
+  { emoji: "🍝", size: 36, top: "76%", left: "89%", delay: 2.0, dur: 7   },
+  { emoji: "🌶️", size: 30, top: "50%", left: "97%", delay: 0.9, dur: 4.5 },
+  { emoji: "🧅", size: 28, top: "42%", left: "2%",  delay: 2.3, dur: 6   },
 ];
 
 export default function Hero() {
   const { t } = useLanguage();
-  const [current, setCurrent] = useState(0);
+  const [cardIndex, setCardIndex] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => setCurrent((c) => (c + 1) % HERO_PRODUCTS.length), 5000);
+    const id = setInterval(() => setCardIndex((i) => (i + 1) % PRODUCTS.length), 5000);
     return () => clearInterval(id);
   }, []);
-
-  const p = HERO_PRODUCTS[current];
 
   return (
     <section
       id="accueil"
-      className="relative overflow-hidden"
-      style={{ background: "#1D5D2B", minHeight: "100dvh" }}
-      aria-label="Section héros Bon Appétit"
+      className="relative overflow-hidden bg-[#1D5D2B]"
+      style={{ height: "100dvh", minHeight: "580px", maxHeight: "960px" }}
+      aria-label="Section heros Bon Appetit"
     >
       {/* Dot texture */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.04]"
-        style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px)", backgroundSize: "28px 28px" }}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
+        style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "24px 24px" }}
       />
 
       {/* Floating ingredients */}
-      {FLOATING.map((f, i) => (
+      {FLOATS.map((f, i) => (
         <motion.div
           key={i}
           className="absolute pointer-events-none select-none hidden lg:block"
-          style={{ top: f.top, left: f.left, fontSize: f.size }}
+          style={{ top: f.top, left: f.left, fontSize: f.size, lineHeight: 1 }}
           animate={{ y: [0, -14, 0] }}
-          transition={{ duration: f.speed, ease: "easeInOut", repeat: Infinity, delay: f.delay }}
+          transition={{ duration: f.dur, ease: "easeInOut", repeat: Infinity, delay: f.delay }}
         >
           {f.emoji}
         </motion.div>
       ))}
 
-      {/* ═══ DESKTOP ═══ */}
-      <div className="hidden lg:flex absolute inset-0" style={{ paddingTop: 72 }}>
+      {/* DESKTOP */}
+      <div className="hidden lg:flex absolute inset-0" style={{ paddingTop: 64 }}>
 
-        {/* LEFT — Text */}
-        <div className="flex-1 flex flex-col justify-center px-12 xl:px-20 pb-12 max-w-[52%]">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-8"
-              style={{ background: "rgba(244,210,51,0.15)", border: "1px solid rgba(244,210,51,0.35)" }}>
-              <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#F4D233" }} />
-              <span className="text-[#F4D233] font-black text-[11px] uppercase tracking-[0.15em]">
-                {t("hero.badge")}
-              </span>
-            </div>
-
-            {/* Title */}
-            <h1
-              className="font-black text-white leading-[1.08] mb-6"
-              style={{ fontSize: "clamp(2.4rem, 5vw, 4.2rem)", letterSpacing: "-0.02em" }}
-            >
-              {t("hero.title")}
-            </h1>
-
-            {/* Subtitle */}
-            <p className="text-white/80 leading-relaxed mb-10" style={{ fontSize: "clamp(1rem, 1.4vw, 1.2rem)", maxWidth: 520 }}>
-              {t("hero.subtitle")}
-            </p>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-4">
-              <motion.a
-                href="#produits"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2.5 font-black rounded-full px-8 py-3.5 shadow-lg"
-                style={{ background: "#F4D233", color: "#1D5D2B", fontSize: "0.95rem" }}
-              >
-                {t("hero.ctaPrimary")}
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </motion.a>
-              <motion.a
-                href="#contact"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2 font-bold rounded-full px-8 py-3.5 transition-colors"
-                style={{ background: "rgba(255,255,255,0.1)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.25)", fontSize: "0.95rem" }}
-              >
-                {t("hero.ctaSecondary")}
-              </motion.a>
-            </div>
-
-            {/* Dot navigation */}
-            <div className="flex items-center gap-3 mt-12">
-              {HERO_PRODUCTS.map((_, i) => (
-                <motion.button
-                  key={i}
-                  onClick={() => setCurrent(i)}
-                  aria-label={`Produit ${i + 1}`}
-                  animate={{ width: i === current ? 32 : 8, backgroundColor: i === current ? "#F4D233" : "rgba(255,255,255,0.3)" }}
-                  transition={{ duration: 0.4 }}
-                  className="h-2 rounded-full border-none cursor-pointer"
-                  style={{ padding: 0 }}
-                />
-              ))}
-            </div>
-          </motion.div>
+        {/* LEFT 45% — Hero image */}
+        <div className="relative shrink-0 overflow-hidden"
+          style={{ width: "45%", height: "100%", display: "flex", alignItems: "flex-end", paddingLeft: "5%" }}>
+          <div className="relative w-full h-full">
+            <Image
+              src="/hero.jpg"
+              alt="Bon Appetit — Votre Cuisine Complete"
+              fill
+              priority
+              fetchPriority="high"
+              sizes="45vw"
+              quality={80}
+              className="object-contain"
+              style={{ objectPosition: "bottom center" }}
+            />
+            <div className="absolute bottom-0 left-0 right-0 h-16 pointer-events-none"
+              style={{ background: "radial-gradient(ellipse 80% 40% at 50% 100%, rgba(0,0,0,0.28) 0%, transparent 70%)" }}
+            />
+          </div>
         </div>
 
-        {/* RIGHT — Product carousel */}
-        <div className="flex-1 flex items-center justify-center pb-8 pr-8">
-          <div className="relative w-full max-w-[520px] h-[clamp(440px,60vh,640px)] flex items-end justify-center">
+        {/* RIGHT 55% — 3 cards + CTA */}
+        <div className="flex-1 flex flex-col items-center justify-center gap-5 px-8 pb-8" style={{ marginTop: 16 }}>
 
-            {/* Background glow */}
-            <motion.div
-              className="absolute rounded-full pointer-events-none"
-              animate={{ scale: [1, 1.08, 1], opacity: [0.35, 0.5, 0.35] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              style={{
-                width: "70%", height: "70%",
-                top: "15%", left: "15%",
-                background: p.bg,
-                filter: "blur(60px)",
-              }}
-            />
-
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={current}
-                initial={{ opacity: 0, y: 40, scale: 0.92 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -30, scale: 0.96 }}
-                transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-                className="relative flex flex-col items-center z-10"
-                style={{ width: "100%" }}
-              >
-                {/* Product card */}
-                <div
-                  className="relative rounded-[36px] overflow-hidden flex flex-col items-center"
-                  style={{
-                    width: "clamp(260px, 36vw, 360px)",
-                    aspectRatio: "3/4",
-                    background: p.bg,
-                    boxShadow: "0 32px 80px rgba(0,0,0,0.45), 0 8px 24px rgba(0,0,0,0.2)",
-                  }}
+          {/* 3-card carousel */}
+          <div className="relative flex items-end justify-center w-full max-w-[760px]"
+            style={{ height: "clamp(300px, 40vh, 440px)" }}>
+            {PRODUCTS.map((p, i) => {
+              const posIdx = (i - cardIndex + PRODUCTS.length) % PRODUCTS.length;
+              const pos = POS[posIdx];
+              const isCenter = posIdx === 1;
+              return (
+                <motion.div
+                  key={p.src}
+                  animate={{ x: pos.x, y: pos.y, scale: pos.scale, opacity: pos.opacity }}
+                  transition={{ duration: 0.85, ease: [0.4, 0, 0.2, 1] }}
+                  style={{ position: "absolute", bottom: 0, left: "calc(50% - 150px)", zIndex: pos.zIndex, transformOrigin: "bottom center" }}
                 >
-                  {/* Glossy sheen */}
-                  <div className="absolute inset-0 pointer-events-none z-10" style={{
-                    background: "linear-gradient(150deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.05) 40%, transparent 60%)",
-                  }} />
-
-                  {/* Header badge */}
-                  <div className="w-full px-4 pt-4 shrink-0 relative z-20">
-                    <div className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 mb-2"
-                      style={{ background: `${p.accent}22`, border: `1px solid ${p.accent}44` }}>
-                      <span className="w-1.5 h-1.5 rounded-full" style={{ background: p.accent }} />
-                      <span className="font-black text-[10px] uppercase tracking-widest" style={{ color: p.accent }}>
-                        Bon Appétit
-                      </span>
-                    </div>
-                    <p className="font-black text-sm leading-tight" style={{ color: p.accent }}>{p.name}</p>
-                    <span className="text-[10px] font-bold uppercase tracking-wider opacity-70" style={{ color: p.accent }}>{p.category}</span>
-                  </div>
-
-                  {/* Product image */}
-                  <div className="flex-1 relative w-full flex items-center justify-center px-4 pb-4">
-                    <motion.div
-                      className="relative w-full h-full"
-                      animate={{ y: [0, -10, 0] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  <motion.div
+                    animate={{ y: isCenter ? [0, -8, 0] : [0, -4, 0] }}
+                    transition={{ duration: isCenter ? 4 : 5, ease: "easeInOut", repeat: Infinity, delay: i * 0.4 }}
+                  >
+                    <div
+                      onClick={() => setCardIndex(i)}
+                      className="flex flex-col cursor-pointer relative"
+                      style={{
+                        width: isCenter ? 300 : 220,
+                        aspectRatio: "3/4",
+                        borderRadius: 32,
+                        background: p.bg,
+                        overflow: "hidden",
+                        boxShadow: isCenter ? "0 24px 60px rgba(0,0,0,0.45)" : "0 12px 32px rgba(0,0,0,0.28)",
+                      }}
                     >
-                      <Image
-                        src={p.src}
-                        alt={p.name}
-                        fill
-                        sizes="360px"
-                        className="object-contain"
-                        style={{ filter: "drop-shadow(0 12px 32px rgba(0,0,0,0.5))", transform: "scale(1.05)" }}
-                        priority={current === 0}
-                        loading={current === 0 ? "eager" : "lazy"}
-                        quality={80}
+                      <div className="absolute inset-0 pointer-events-none"
+                        style={{ background: "linear-gradient(155deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.04) 40%, transparent 60%)", borderRadius: 30, zIndex: 2 }}
                       />
-                    </motion.div>
-                  </div>
-                </div>
+                      <div className="px-3 pt-3 shrink-0 relative z-10">
+                        <div className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 mb-1"
+                          style={{ background: p.accent + "22" }}>
+                          <div className="w-1 h-1 rounded-full" style={{ background: p.accent }} />
+                          <span className="font-black text-[6px] uppercase tracking-widest" style={{ color: p.accent }}>Bon Appetit</span>
+                        </div>
+                        <p className="font-black leading-tight text-[10px]" style={{ color: p.accent }}>{p.name}</p>
+                        <div className="mt-0.5 inline-flex items-center rounded-full px-1.5 py-0.5"
+                          style={{ background: p.accent + "14" }}>
+                          <span className="font-black text-[6px] uppercase tracking-widest" style={{ color: p.accent }}>{p.size}</span>
+                        </div>
+                      </div>
+                      <div className="flex-1 flex items-center justify-center px-2 pb-2 min-h-0 relative">
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={p.src}
+                            alt={p.name}
+                            fill
+                            sizes={isCenter ? "300px" : "220px"}
+                            className="object-contain"
+                            quality={isCenter ? 80 : 70}
+                            priority={i === 0}
+                            loading={i === 0 ? "eager" : "lazy"}
+                            style={{
+                              filter: isCenter ? "drop-shadow(0 8px 24px rgba(0,0,0,0.5))" : "none",
+                              transform: isCenter ? "scale(1.05)" : "scale(1)",
+                              transition: "transform 0.6s ease",
+                              transformOrigin: "center 55%",
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              );
+            })}
+          </div>
 
-                {/* Product label below card */}
-                <div className="mt-5 text-center">
-                  <p className="text-white font-black text-xl">{p.name}</p>
-                  <span className="inline-flex items-center gap-1.5 mt-1 px-3 py-1 rounded-full text-xs font-bold"
-                    style={{ background: "rgba(244,210,51,0.15)", color: "#F4D233" }}>
-                    {p.category}
+          {/* Navigation */}
+          <div className="flex items-center gap-4 w-full max-w-[760px] justify-center">
+            <motion.button
+              whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.92 }}
+              onClick={() => setCardIndex((i) => (i - 1 + PRODUCTS.length) % PRODUCTS.length)}
+              aria-label="Produit precedent"
+              className="flex items-center justify-center rounded-full"
+              style={{ width: 44, height: 44, background: "rgba(255,255,255,0.15)", border: "1.5px solid rgba(255,255,255,0.3)" }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5"><path d="M15 18l-6-6 6-6" /></svg>
+            </motion.button>
+            <div className="flex items-center gap-2">
+              {PRODUCTS.map((_, i) => {
+                const isActive = (i - cardIndex + PRODUCTS.length) % PRODUCTS.length === 1;
+                return (
+                  <motion.button
+                    key={i}
+                    onClick={() => setCardIndex(i)}
+                    aria-label={"Produit " + (i + 1)}
+                    animate={{ width: isActive ? 28 : 8, backgroundColor: isActive ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.35)" }}
+                    transition={{ duration: 0.4 }}
+                    className="h-2 rounded-full border-none cursor-pointer"
+                    style={{ padding: 0, minWidth: 8 }}
+                  />
+                );
+              })}
+            </div>
+            <motion.button
+              whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.92 }}
+              onClick={() => setCardIndex((i) => (i + 1) % PRODUCTS.length)}
+              aria-label="Produit suivant"
+              className="flex items-center justify-center rounded-full"
+              style={{ width: 44, height: 44, background: "rgba(255,255,255,0.15)", border: "1.5px solid rgba(255,255,255,0.3)" }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5"><path d="M9 18l6-6-6-6" /></svg>
+            </motion.button>
+          </div>
+
+          {/* Yellow CTA card */}
+          <div className="w-full max-w-[620px]">
+            <div style={{
+              background: "#F4D233",
+              borderRadius: 22,
+              padding: "22px 28px",
+              boxShadow: "0 12px 50px rgba(244,210,51,0.35), 0 4px 20px rgba(0,0,0,0.10)",
+              display: "flex",
+              alignItems: "center",
+              gap: 24,
+            }}>
+              <div className="flex-1 min-w-0">
+                <div className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 mb-3 w-fit"
+                  style={{ background: "rgba(29,93,43,0.10)", border: "1px solid rgba(29,93,43,0.15)" }}>
+                  <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#1D5D2B" }} />
+                  <span className="font-black text-[8px] uppercase tracking-[0.12em]" style={{ color: "#1D5D2B" }}>
+                    {t("hero.tagline") as string}
                   </span>
                 </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Prev/Next */}
-            <div className="absolute bottom-0 left-0 right-0 flex justify-center gap-3">
-              <motion.button
-                whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
-                onClick={() => setCurrent((c) => (c - 1 + HERO_PRODUCTS.length) % HERO_PRODUCTS.length)}
-                className="w-10 h-10 rounded-full flex items-center justify-center"
-                style={{ background: "rgba(255,255,255,0.12)", border: "1.5px solid rgba(255,255,255,0.25)" }}
-                aria-label="Produit précédent"
-              >
-                <svg width="14" height="14" fill="none" stroke="white" strokeWidth={2.5} viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg>
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
-                onClick={() => setCurrent((c) => (c + 1) % HERO_PRODUCTS.length)}
-                className="w-10 h-10 rounded-full flex items-center justify-center"
-                style={{ background: "rgba(255,255,255,0.12)", border: "1.5px solid rgba(255,255,255,0.25)" }}
-                aria-label="Produit suivant"
-              >
-                <svg width="14" height="14" fill="none" stroke="white" strokeWidth={2.5} viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" /></svg>
-              </motion.button>
+                <h1 className="font-black leading-[1.15] mb-2" style={{ color: "#1D5D2B", fontSize: "clamp(1.2rem,2.2vw,1.75rem)" }}>
+                  {t("hero.line1") as string}{" "}
+                  <span>{t("hero.line2") as string}</span>
+                </h1>
+                <p className="leading-[1.55]" style={{ color: "rgba(29,93,43,0.80)", fontSize: "clamp(0.72rem,0.9vw,0.82rem)" }}>
+                  {t("hero.subtitle") as string}
+                </p>
+              </div>
+              <div className="flex flex-col gap-2.5 shrink-0">
+                <motion.a
+                  href="#produits"
+                  whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
+                  className="inline-flex items-center gap-2 font-black rounded-full whitespace-nowrap"
+                  style={{ background: "#1D5D2B", color: "#F4D233", fontSize: "0.84rem", padding: "11px 26px" }}
+                >
+                  {t("hero.ctaPrimary") as string}
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </motion.a>
+                <a href="#apropos"
+                  className="inline-flex items-center justify-center whitespace-nowrap"
+                  style={{ color: "rgba(29,93,43,0.70)", fontSize: "0.76rem" }}>
+                  {t("hero.ctaSecondary") as string}
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ═══ MOBILE ═══ */}
-      <div className="lg:hidden flex flex-col" style={{ minHeight: "100svh", paddingTop: 64 }}>
+      {/* MOBILE */}
+      <div className="lg:hidden flex flex-col" style={{ minHeight: "92svh", maxHeight: "720px", paddingTop: 60 }}>
+        <div className="relative flex-1 overflow-hidden" style={{ minHeight: "38%", maxHeight: "50%" }}>
+          <Image src="/hero.jpg" alt="Bon Appetit" fill priority sizes="100vw" quality={75}
+            className="object-contain" style={{ objectPosition: "bottom center" }} />
+          <div className="absolute bottom-0 left-0 right-0 h-10 pointer-events-none"
+            style={{ background: "linear-gradient(to top, rgba(29,93,43,0.6), transparent)" }} />
+        </div>
 
-        {/* Text */}
-        <div className="flex-shrink-0 px-5 pt-8 pb-4">
-          <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 mb-4"
-            style={{ background: "rgba(244,210,51,0.15)", border: "1px solid rgba(244,210,51,0.3)" }}>
-            <span className="w-1 h-1 rounded-full animate-pulse" style={{ background: "#F4D233" }} />
-            <span className="text-[#F4D233] font-black text-[10px] uppercase tracking-widest">{t("hero.badge")}</span>
-          </div>
-          <h1 className="font-black text-white leading-[1.1] mb-3" style={{ fontSize: "clamp(1.8rem, 8vw, 2.8rem)" }}>
-            {t("hero.title")}
-          </h1>
-          <p className="text-white/75 text-sm leading-relaxed mb-5">{t("hero.subtitle")}</p>
-          <div className="flex items-center gap-3">
-            <a href="#produits"
-              className="inline-flex items-center gap-2 font-black rounded-full px-5 py-2.5 text-sm"
-              style={{ background: "#F4D233", color: "#1D5D2B" }}>
-              {t("hero.ctaPrimary")}
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </a>
-            <a href="#contact"
-              className="font-bold text-sm rounded-full px-4 py-2.5"
-              style={{ background: "rgba(255,255,255,0.1)", color: "#fff", border: "1px solid rgba(255,255,255,0.2)" }}>
-              {t("hero.ctaSecondary")}
-            </a>
+        <div className="shrink-0 px-4 pb-2" style={{ marginTop: -16, zIndex: 10, position: "relative" }}>
+          <div className="w-full rounded-2xl px-4 py-3.5 flex flex-col gap-1.5"
+            style={{ background: "#F4D233", boxShadow: "0 8px 32px rgba(244,210,51,0.35)" }}>
+            <div className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 w-fit"
+              style={{ background: "rgba(29,93,43,0.10)", border: "1px solid rgba(29,93,43,0.15)" }}>
+              <span className="w-1 h-1 rounded-full animate-pulse" style={{ background: "#1D5D2B" }} />
+              <span className="font-black text-[7px] uppercase tracking-[0.12em]" style={{ color: "#1D5D2B" }}>
+                {t("hero.tagline") as string}
+              </span>
+            </div>
+            <h1 className="font-black leading-tight text-lg" style={{ color: "#1D5D2B" }}>
+              {t("hero.line1") as string}{" "}{t("hero.line2") as string}
+            </h1>
+            <p className="text-[11px] leading-snug" style={{ color: "rgba(29,93,43,0.80)" }}>
+              {t("hero.subtitle") as string}
+            </p>
+            <div className="flex items-center gap-3 mt-0.5">
+              <a href="#produits" className="inline-flex items-center gap-1.5 px-4 py-2 font-black rounded-full text-xs"
+                style={{ background: "#1D5D2B", color: "#F4D233" }}>
+                {t("hero.ctaPrimary") as string}
+                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+              <a href="#apropos" className="text-[11px]" style={{ color: "rgba(29,93,43,0.70)" }}>
+                {t("hero.ctaSecondary") as string}
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Product image mobile */}
-        <div className="flex-1 flex items-end justify-center pb-6 px-4 relative">
-          <div className="absolute inset-0 pointer-events-none" style={{
-            background: `radial-gradient(ellipse 60% 60% at 50% 80%, ${p.bg}55 0%, transparent 70%)`,
-          }} />
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-              className="relative z-10"
-              style={{ width: "70vw", maxWidth: 300, aspectRatio: "3/4" }}
-            >
-              <div className="w-full h-full rounded-3xl flex flex-col items-center overflow-hidden"
-                style={{ background: p.bg, boxShadow: "0 20px 60px rgba(0,0,0,0.4)" }}>
-                <div className="px-3 pt-3 w-full">
-                  <p className="font-black text-xs" style={{ color: p.accent }}>{p.name}</p>
-                </div>
-                <div className="flex-1 relative w-full px-3 pb-3">
-                  <Image src={p.src} alt={p.name} fill sizes="300px" className="object-contain"
-                    style={{ filter: "drop-shadow(0 8px 20px rgba(0,0,0,0.4))" }} loading="lazy" quality={75} />
+        <div className="flex-1 flex items-end justify-center gap-2.5 px-4 pb-2">
+          {PRODUCTS.map((p, i) => {
+            const isCenter = i === 1;
+            return (
+              <div key={i} onClick={() => setCardIndex(i)}
+                style={{ width: isCenter ? "34%" : "28%", marginBottom: isCenter ? 8 : 0, cursor: "pointer" }}>
+                <div className="flex flex-col"
+                  style={{ aspectRatio: "3/4", borderRadius: 16, background: p.bg, overflow: "hidden",
+                    boxShadow: isCenter ? "0 12px 32px rgba(0,0,0,0.4)" : "0 6px 18px rgba(0,0,0,0.25)" }}>
+                  <div className="px-2 pt-2 shrink-0">
+                    <p className="font-black leading-tight text-[8px]" style={{ color: p.accent }}>{p.name}</p>
+                  </div>
+                  <div className="flex-1 flex items-center justify-center px-1 pb-1 min-h-0">
+                    <div className="relative w-full h-full">
+                      <Image src={p.src} alt={p.name} fill sizes="30vw" quality={70}
+                        loading={isCenter ? "eager" : "lazy"} priority={isCenter}
+                        className="object-contain"
+                        style={{ filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.45))" }} />
+                    </div>
+                  </div>
                 </div>
               </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* Dot nav mobile */}
-        <div className="flex justify-center gap-2 pb-6">
-          {HERO_PRODUCTS.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              aria-label={`Produit ${i + 1}`}
-              style={{ width: i === current ? 24 : 8, height: 8, borderRadius: 4, border: "none", cursor: "pointer", transition: "all 0.3s", background: i === current ? "#F4D233" : "rgba(255,255,255,0.3)" }}
-            />
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
