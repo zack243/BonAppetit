@@ -40,7 +40,7 @@ const ALL_PRODUCTS = [
 ];
 
 const TAG_COLORS: Record<string, { bg: string; text: string; glow: string }> = {
-  "Sauces":      { bg: "#FDEA02", text: "#026D41", glow: "rgba(253,234,2,0.4)"   },
+  "Sauces":      { bg: "#A52520", text: "#fff",    glow: "rgba(165,37,32,0.4)"   },
   "Laitier":     { bg: "#026D41", text: "#FDEA02", glow: "rgba(2,109,65,0.4)"    },
   "Conserve":    { bg: "#4C753C", text: "#fff",    glow: "rgba(76,117,60,0.4)"   },
   "Mer":         { bg: "#345B42", text: "#FDEA02", glow: "rgba(52,91,66,0.4)"    },
@@ -138,6 +138,8 @@ export default function Products() {
                       background: "#fff",
                       border: "1.5px solid rgba(2,109,65,0.08)",
                       boxShadow: "0 4px 24px rgba(2,109,65,0.08)",
+                      borderTopColor: "#A52520",
+                      borderTopWidth: 2,
                     }}
                     onMouseEnter={e => {
                       (e.currentTarget as HTMLElement).style.boxShadow = `0 20px 52px ${tagColor.glow}, 0 4px 16px rgba(0,0,0,0.06)`;
@@ -179,7 +181,7 @@ export default function Products() {
                         {product.tag}
                       </span>
                       <h3 className="font-black text-[#1a1a1a] text-sm leading-tight">{product.name}</h3>
-                      <span className="inline-flex items-center gap-1 text-[11px] font-black transition-all duration-300 group-hover:gap-2"
+                      <span className="inline-flex items-center gap-1 text-[11px] font-black transition-all duration-300 group-hover:gap-2 group-hover:text-[#A52520]"
                         style={{ color: "#026D41" }}>
                         {t("products.discover") as string}
                         <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">

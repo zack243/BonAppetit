@@ -7,7 +7,7 @@ import { useLanguage } from "@/components/LanguageProvider";
 import { initScrollReveal } from "@/lib/scrollReveal";
 
 const CAT_DATA = [
-  { src: "/products/mayonnaise.png",              floatDelay: 0,   bg: "#FDEA02", text: "#026D41", shadow: "rgba(253,234,2,0.35)"  },
+  { src: "/products/mayonnaise.png",              floatDelay: 0,   bg: "#FFF6E1", text: "#A52520", shadow: "rgba(165,37,32,0.25)", redAccent: true  },
   { src: "/products/Milk Powder - 1800gm.png",    floatDelay: 0.4, bg: "#026D41", text: "#FDEA02", shadow: "rgba(2,109,65,0.40)"   },
   { src: "/products/corned-beef.png",             floatDelay: 0.8, bg: "#4C753C", text: "#FDEA02", shadow: "rgba(76,117,60,0.40)"  },
   { src: "/products/makayabu.png",                floatDelay: 1.2, bg: "#345B42", text: "#FDEA02", shadow: "rgba(52,91,66,0.35)"   },
@@ -34,8 +34,8 @@ export default function Categories() {
         {/* Header */}
         <div className="sr text-center mb-14">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5 text-xs font-black uppercase tracking-widest"
-            style={{ background: "rgba(2,109,65,0.08)", color: "#026D41" }}>
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#026D41" }} />
+            style={{ background: "rgba(165,37,32,0.08)", color: "#A52520" }}>
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#A52520" }} />
             {t("categories.badge") as string}
           </span>
           <h2 className="font-black text-[#026D41] leading-tight mb-3" style={{ fontSize: "clamp(1.8rem,4vw,3rem)" }}>
@@ -57,9 +57,10 @@ export default function Categories() {
                   minHeight: 210,
                   padding: "28px 20px 22px",
                   boxShadow: `0 6px 28px ${cd.shadow}`,
-                  border: `1.5px solid ${cd.bg === "#FFF6E1" ? "rgba(2,109,65,0.12)" : "transparent"}`,
+                  border: (cd as {redAccent?: boolean}).redAccent ? "2px solid rgba(165,37,32,0.25)" : `1.5px solid ${cd.bg === "#FFF6E1" ? "rgba(2,109,65,0.12)" : "transparent"}`,
+                  borderTop: (cd as {redAccent?: boolean}).redAccent ? "3px solid #A52520" : undefined,
                 }}
-                whileHover={{ y: -10, scale: 1.02, boxShadow: `0 18px 48px ${cd.shadow}` }}
+                whileHover={{ y: -10, scale: 1.02, boxShadow: (cd as {redAccent?: boolean}).redAccent ? "0 18px 48px rgba(165,37,32,0.25)" : `0 18px 48px ${cd.shadow}` }}
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               >
                 {/* Dot texture */}
@@ -102,8 +103,8 @@ export default function Categories() {
                 {/* Arrow on hover */}
                 <div className="relative z-10 mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="w-7 h-7 rounded-full flex items-center justify-center"
-                    style={{ background: "rgba(255,255,255,0.30)" }}>
-                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke={cd.text} strokeWidth={2.5}>
+                    style={{ background: (cd as {redAccent?: boolean}).redAccent ? "#A52520" : "rgba(255,255,255,0.30)" }}>
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke={(cd as {redAccent?: boolean}).redAccent ? "#fff" : cd.text} strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </div>
