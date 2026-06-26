@@ -8,35 +8,35 @@ import { initScrollReveal } from "@/lib/scrollReveal";
 
 const PHARES = [
   {
-    src: "/products/lait-1800.png",
-    bg: "linear-gradient(145deg, #1D5D2B 0%, #2d7a3a 100%)",
-    solidBg: "#1D5D2B",
-    accent: "#F4D233",
-    glow: "rgba(29,93,43,0.45)",
+    src: "/products/Milk Powder - 1800gm.png",
+    bg: "linear-gradient(145deg, #026D41 0%, #345B42 100%)",
+    solidBg: "#026D41",
+    accent: "#FDEA02",
+    glow: "rgba(2,109,65,0.45)",
     featured: false,
   },
   {
     src: "/products/mayonnaise.png",
-    bg: "linear-gradient(145deg, #F4D233 0%, #f7dc5a 100%)",
-    solidBg: "#F4D233",
-    accent: "#1D5D2B",
-    glow: "rgba(244,210,51,0.55)",
+    bg: "linear-gradient(145deg, #FDEA02 0%, #fff130 100%)",
+    solidBg: "#FDEA02",
+    accent: "#026D41",
+    glow: "rgba(253,234,2,0.55)",
     featured: true,
   },
   {
     src: "/products/ketchup.png",
-    bg: "linear-gradient(145deg, #D92525 0%, #e83535 100%)",
-    solidBg: "#D92525",
-    accent: "#fff",
-    glow: "rgba(217,37,37,0.45)",
+    bg: "linear-gradient(145deg, #A52520 0%, #c03030 100%)",
+    solidBg: "#A52520",
+    accent: "#FDEA02",
+    glow: "rgba(165,37,32,0.45)",
     featured: false,
   },
   {
     src: "/products/makayabu.png",
-    bg: "linear-gradient(145deg, #4F8F38 0%, #5fa344 100%)",
-    solidBg: "#4F8F38",
-    accent: "#F4D233",
-    glow: "rgba(79,143,56,0.45)",
+    bg: "linear-gradient(145deg, #4C753C 0%, #83AC30 100%)",
+    solidBg: "#4C753C",
+    accent: "#FDEA02",
+    glow: "rgba(76,117,60,0.45)",
     featured: false,
   },
 ];
@@ -57,18 +57,18 @@ export default function Phares() {
       id="phares"
       ref={sectionRef}
       className="overflow-hidden py-20 lg:py-28"
-      style={{ background: "linear-gradient(180deg, #fff 0%, #FFF8EC 60%, #fff 100%)" }}
+      style={{ background: "linear-gradient(180deg, #FFF6E1 0%, #fff 60%, #FFF6E1 100%)" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="sr text-center mb-14">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5 text-xs font-black uppercase tracking-widest"
-            style={{ background: "rgba(29,93,43,0.08)", color: "#1D5D2B" }}>
-            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#F4D233", boxShadow: "0 0 8px #F4D233" }} />
+            style={{ background: "rgba(2,109,65,0.08)", color: "#026D41" }}>
+            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#FDEA02", boxShadow: "0 0 8px #FDEA02" }} />
             {t("phares.badge") as string}
           </span>
-          <h2 className="font-black text-[#1a1a1a] leading-tight mb-3" style={{ fontSize: "clamp(1.9rem,4vw,3.2rem)" }}>
+          <h2 className="font-black text-[#026D41] leading-tight mb-3" style={{ fontSize: "clamp(1.9rem,4vw,3.2rem)" }}>
             {t("phares.title") as string}
           </h2>
           <p className="text-[#222]/55 max-w-md mx-auto text-base">{t("phares.subtitle") as string}</p>

@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import dynamic from "next/dynamic";
-import { Poppins, Nunito } from "next/font/google";
+import { Manrope, Source_Sans_3 } from "next/font/google";
 import { locales, Locale, defaultLocale } from "@/i18n/config";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import Navbar from "@/components/Navbar";
@@ -9,22 +9,22 @@ import frMessages from "@/i18n/messages/fr.json";
 import enMessages from "@/i18n/messages/en.json";
 import "@/app/globals.css";
 
-const poppins = Poppins({
+const manrope = Manrope({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
   variable: "--font-heading",
 });
 
-const nunito = Nunito({
+const sourceSans = Source_Sans_3({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "600", "700"],
   display: "swap",
   variable: "--font-body",
 });
 
 const Footer = dynamic(() => import("@/components/Footer"), {
-  loading: () => <footer className="h-32" style={{ background: "#1D5D2B" }} />,
+  loading: () => <footer className="h-32" style={{ background: "#FDEA02" }} />,
   ssr: true,
 });
 
@@ -37,7 +37,7 @@ export function generateStaticParams() {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#1D5D2B",
+  themeColor: "#026D41",
 };
 
 export async function generateMetadata({
@@ -95,7 +95,7 @@ export default async function LocaleLayout({
   }
 
   return (
-    <html lang={locale} className={`h-full antialiased ${poppins.variable} ${nunito.variable}`}>
+    <html lang={locale} className={`h-full antialiased ${manrope.variable} ${sourceSans.variable}`}>
       <body className="min-h-full flex flex-col bg-white text-[#222222]">
         <LanguageProvider initialLocale={locale as Locale}>
           <Navbar />

@@ -2,17 +2,27 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #222222;
+  --foreground: #4A4A4A;
 
-  /* Bon Appétit Brand Colors */
-  --green: #1D5D2B;
-  --green-light: #4F8F38;
-  --yellow: #F4D233;
-  --red: #D92525;
-  --orange: #F59E0B;
-  --cream: #FFF8EC;
-  --white: #FFFFFF;
-  --dark: #222222;
+  /* ── Bon Appétit Official Brand Palette ── */
+  /* Primary */
+  --green:         #026D41;
+  --red:           #A52520;
+  --yellow:        #FDEA02;
+  --white:         #FFFFFF;
+
+  /* Secondary */
+  --green-deep:    #345B42;
+  --green-ribbon:  #4C753C;
+  --green-fresh:   #83AC30;
+  --gold:          #C8B612;
+  --cream:         #FFF6E1;
+  --charcoal:      #4A4A4A;
+
+  /* Legacy aliases kept for backward compat */
+  --green-light:   #4C753C;
+  --orange:        #C8B612;
+  --dark:          #4A4A4A;
 }
 
 @theme inline {
@@ -22,7 +32,6 @@
   --color-green-light: var(--green-light);
   --color-yellow: var(--yellow);
   --color-red: var(--red);
-  --color-orange: var(--orange);
   --color-cream: var(--cream);
   --font-heading: var(--font-heading);
   --font-body: var(--font-body);
@@ -37,7 +46,7 @@ html {
 }
 
 body {
-  font-family: var(--font-body, 'Nunito', sans-serif);
+  font-family: var(--font-body, 'Source Sans 3', 'Nunito', sans-serif);
   background: var(--background);
   color: var(--foreground);
   line-height: 1.6;
@@ -46,8 +55,8 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading, 'Poppins', sans-serif);
-  font-weight: 600;
+  font-family: var(--font-heading, 'Manrope', 'Poppins', sans-serif);
+  font-weight: 700;
   line-height: 1.2;
 }
 

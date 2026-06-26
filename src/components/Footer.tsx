@@ -56,119 +56,140 @@ export default function Footer() {
   ];
 
   return (
-    <footer style={{ background: "#F4D233", color: "#1D5D2B" }} className="border-t-4 border-[#1D5D2B]/10">
-
-      {/* Marquee band */}
-      <div className="border-b border-[#1D5D2B]/10 overflow-hidden py-3"
-        style={{ background: "#1D5D2B" }}>
-        <div className="flex whitespace-nowrap animate-marquee">
-          {[...Array(2)].map((_, ri) => (
-            <div key={ri} className="flex items-center gap-12 pr-12 flex-shrink-0">
-              {["Qualité Premium", "Produits Certifiés", "1000+ Points de Vente", "Présence Nationale", "20+ Produits", "Cuisine Complète", "Familles Congolaises"].map((item, i) => (
-                <span key={i} className="flex items-center gap-3 text-xs font-semibold uppercase tracking-widest" style={{ color: "#F4D233" }}>
-                  <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: "#F4D233" }} />
-                  {item}
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
+    <>
+      {/* Wave separator */}
+      <div className="w-full overflow-hidden leading-none" style={{ background: "#FFF6E1" }}>
+        <svg viewBox="0 0 1440 72" preserveAspectRatio="none" className="w-full h-12 md:h-16 block"
+          style={{ display: "block" }}>
+          <path d="M0,36 C240,72 480,0 720,36 C960,72 1200,0 1440,36 L1440,72 L0,72 Z"
+            fill="#FDEA02" />
+        </svg>
       </div>
 
-      {/* Main body */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-12">
+      <footer style={{ background: "#FDEA02", color: "#026D41" }}>
 
-          {/* Brand col */}
-          <div className="md:col-span-2">
-            <div className="relative mb-5" style={{ width: 160, height: 54 }}>
-              <Image
-                src="/logo.png"
-                alt="Bon Appétit"
-                fill
-                sizes="160px"
-                quality={70}
-                className="object-contain"
-              />
-            </div>
-            <p className="text-sm leading-relaxed max-w-xs mb-7" style={{ color: "rgba(29,93,43,0.75)" }}>
-              {t("footer.tagline") as string}
-            </p>
-            <div className="flex items-center gap-3">
-              {socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300"
-                  style={{ background: "rgba(29,93,43,0.10)", border: "1.5px solid rgba(29,93,43,0.15)", color: "#1D5D2B" }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "#1D5D2B";
-                    (e.currentTarget as HTMLElement).style.color = "#F4D233";
-                    (e.currentTarget as HTMLElement).style.borderColor = "#1D5D2B";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(29,93,43,0.10)";
-                    (e.currentTarget as HTMLElement).style.color = "#1D5D2B";
-                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(29,93,43,0.15)";
-                  }}
-                >
-                  {s.icon}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Link columns */}
-          {cols.map((col) => (
-            <div key={col.title as string}>
-              <h3 className="font-black text-sm mb-5 uppercase tracking-widest" style={{ color: "#1D5D2B" }}>
-                {col.title as string}
-              </h3>
-              <ul className="space-y-3">
-                {col.links.map((link) => (
-                  <li key={link.href}>
-                    <a
-                      href={link.href}
-                      className="text-sm font-medium transition-colors duration-200"
-                      style={{ color: "rgba(29,93,43,0.70)" }}
-                      onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#1D5D2B"}
-                      onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "rgba(29,93,43,0.70)"}
-                    >
-                      {link.label as string}
-                    </a>
-                  </li>
+        {/* Marquee band */}
+        <div className="overflow-hidden py-3" style={{ background: "#026D41" }}>
+          <div className="flex whitespace-nowrap animate-marquee">
+            {[...Array(2)].map((_, ri) => (
+              <div key={ri} className="flex items-center gap-10 pr-10 flex-shrink-0">
+                {["Good Food. Good Mood.", "Every Meal Matters.", "Qualité Premium", "Produits Certifiés", "1000+ Points de Vente", "Good Life.", "Familles Congolaises", "Every Family Matters.", "Votre Cuisine Complète"].map((item, i) => (
+                  <span key={i} className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-widest" style={{ color: "#FDEA02" }}>
+                    <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#FDEA02" }} />
+                    {item}
+                  </span>
                 ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Bottom bar */}
-      <div className="border-t border-[#1D5D2B]/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs font-medium" style={{ color: "rgba(29,93,43,0.65)" }}>
-            © {year} Bon Appétit RDC. {t("footer.copyright") as string}
-          </p>
-          <div className="flex items-center gap-6">
-            <a href="#" className="text-xs font-medium transition-colors"
-              style={{ color: "rgba(29,93,43,0.65)" }}
-              onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#1D5D2B"}
-              onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "rgba(29,93,43,0.65)"}>
-              {t("footer.legal") as string}
-            </a>
-            <a href="#" className="text-xs font-medium transition-colors"
-              style={{ color: "rgba(29,93,43,0.65)" }}
-              onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#1D5D2B"}
-              onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "rgba(29,93,43,0.65)"}>
-              {t("footer.privacy") as string}
-            </a>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
-    </footer>
+
+        {/* Main body */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-12">
+
+            {/* Brand col */}
+            <div className="md:col-span-2">
+              <div className="relative mb-5" style={{ width: 160, height: 54 }}>
+                <Image
+                  src="/logo.png"
+                  alt="Bon Appétit"
+                  fill
+                  sizes="160px"
+                  quality={70}
+                  className="object-contain"
+                />
+              </div>
+              <p className="text-sm leading-relaxed max-w-xs mb-4" style={{ color: "rgba(2,109,65,0.80)" }}>
+                {t("footer.tagline") as string}
+              </p>
+              {/* Brand slogans */}
+              <div className="flex flex-col gap-1 mb-6">
+                <p className="text-xs font-black italic" style={{ color: "#026D41" }}>
+                  &ldquo;Good Food. Good Mood. Good Life.&rdquo;
+                </p>
+                <p className="text-xs font-semibold" style={{ color: "rgba(2,109,65,0.65)" }}>
+                  Every Meal Matters. Every Family Matters.
+                </p>
+              </div>
+              <div className="flex items-center gap-3">
+                {socials.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    aria-label={s.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300"
+                    style={{ background: "rgba(2,109,65,0.12)", border: "1.5px solid rgba(2,109,65,0.18)", color: "#026D41" }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "#026D41";
+                      (e.currentTarget as HTMLElement).style.color = "#FDEA02";
+                      (e.currentTarget as HTMLElement).style.borderColor = "#026D41";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "rgba(2,109,65,0.12)";
+                      (e.currentTarget as HTMLElement).style.color = "#026D41";
+                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(2,109,65,0.18)";
+                    }}
+                  >
+                    {s.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Link columns */}
+            {cols.map((col) => (
+              <div key={col.title as string}>
+                <h3 className="font-black text-sm mb-5 uppercase tracking-widest" style={{ color: "#026D41" }}>
+                  {col.title as string}
+                </h3>
+                <ul className="space-y-3">
+                  {col.links.map((link) => (
+                    <li key={link.href}>
+                      <a
+                        href={link.href}
+                        className="text-sm font-medium transition-colors duration-200 flex items-center gap-1.5 group"
+                        style={{ color: "rgba(2,109,65,0.70)" }}
+                        onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#026D41"}
+                        onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "rgba(2,109,65,0.70)"}
+                      >
+                        <span className="w-1 h-1 rounded-full flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                          style={{ background: "#026D41" }} />
+                        {link.label as string}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="border-t border-[#026D41]/12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p className="text-xs font-medium" style={{ color: "rgba(2,109,65,0.65)" }}>
+              © {year} Bon Appétit RDC. {t("footer.copyright") as string}
+            </p>
+            <div className="flex items-center gap-6">
+              <a href="#" className="text-xs font-medium transition-colors"
+                style={{ color: "rgba(2,109,65,0.65)" }}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#026D41"}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "rgba(2,109,65,0.65)"}>
+                {t("footer.legal") as string}
+              </a>
+              <a href="#" className="text-xs font-medium transition-colors"
+                style={{ color: "rgba(2,109,65,0.65)" }}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#026D41"}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "rgba(2,109,65,0.65)"}>
+                {t("footer.privacy") as string}
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </>
   );
 }
