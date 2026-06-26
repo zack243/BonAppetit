@@ -105,7 +105,7 @@ export default function Footer() {
               </p>
               {/* Brand slogans */}
               <div className="flex flex-col gap-1 mb-6">
-                <p className="text-xs font-black italic" style={{ color: "#026D41" }}>
+                <p className="text-xs font-black italic" style={{ color: "#A52520" }}>
                   &ldquo;Good Food. Good Mood. Good Life.&rdquo;
                 </p>
                 <p className="text-xs font-semibold" style={{ color: "rgba(2,109,65,0.65)" }}>
@@ -123,9 +123,9 @@ export default function Footer() {
                     className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300"
                     style={{ background: "rgba(2,109,65,0.12)", border: "1.5px solid rgba(2,109,65,0.18)", color: "#026D41" }}
                     onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "#026D41";
-                      (e.currentTarget as HTMLElement).style.color = "#FDEA02";
-                      (e.currentTarget as HTMLElement).style.borderColor = "#026D41";
+                      (e.currentTarget as HTMLElement).style.background = "#A52520";
+                      (e.currentTarget as HTMLElement).style.color = "#fff";
+                      (e.currentTarget as HTMLElement).style.borderColor = "#A52520";
                     }}
                     onMouseLeave={(e) => {
                       (e.currentTarget as HTMLElement).style.background = "rgba(2,109,65,0.12)";
@@ -142,7 +142,7 @@ export default function Footer() {
             {/* Link columns */}
             {cols.map((col) => (
               <div key={col.title as string}>
-                <h3 className="font-black text-sm mb-5 uppercase tracking-widest" style={{ color: "#026D41" }}>
+                <h3 className="font-black text-sm mb-5 uppercase tracking-widest" style={{ color: "#A52520" }}>
                   {col.title as string}
                 </h3>
                 <ul className="space-y-3">
@@ -152,7 +152,7 @@ export default function Footer() {
                         href={link.href}
                         className="text-sm font-medium transition-colors duration-200 flex items-center gap-1.5 group"
                         style={{ color: "rgba(2,109,65,0.70)" }}
-                        onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#026D41"}
+                        onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#A52520"}
                         onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "rgba(2,109,65,0.70)"}
                       >
                         <span className="w-1 h-1 rounded-full flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity"
@@ -168,7 +168,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-[#026D41]/12">
+        <div className="border-t-2" style={{ borderColor: "rgba(165,37,32,0.20)" }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-xs font-medium" style={{ color: "rgba(2,109,65,0.65)" }}>
               © {year} Bon Appétit RDC. {t("footer.copyright") as string}
@@ -176,13 +176,13 @@ export default function Footer() {
             <div className="flex items-center gap-6">
               <a href="#" className="text-xs font-medium transition-colors"
                 style={{ color: "rgba(2,109,65,0.65)" }}
-                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#026D41"}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#A52520"}
                 onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "rgba(2,109,65,0.65)"}>
                 {t("footer.legal") as string}
               </a>
               <a href="#" className="text-xs font-medium transition-colors"
                 style={{ color: "rgba(2,109,65,0.65)" }}
-                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#026D41"}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#A52520"}
                 onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "rgba(2,109,65,0.65)"}>
                 {t("footer.privacy") as string}
               </a>

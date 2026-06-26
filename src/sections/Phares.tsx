@@ -14,6 +14,7 @@ const PHARES = [
     accent: "#FDEA02",
     glow: "rgba(2,109,65,0.45)",
     featured: false,
+    badge: "Populaire",
   },
   {
     src: "/products/mayonnaise.png",
@@ -22,6 +23,7 @@ const PHARES = [
     accent: "#026D41",
     glow: "rgba(253,234,2,0.55)",
     featured: true,
+    badge: "Best Seller",
   },
   {
     src: "/products/ketchup.png",
@@ -30,6 +32,7 @@ const PHARES = [
     accent: "#FDEA02",
     glow: "rgba(165,37,32,0.45)",
     featured: false,
+    badge: "Incontournable",
   },
   {
     src: "/products/makayabu.png",
@@ -38,6 +41,7 @@ const PHARES = [
     accent: "#FDEA02",
     glow: "rgba(76,117,60,0.45)",
     featured: false,
+    badge: "Authentique",
   },
 ];
 
@@ -103,9 +107,12 @@ export default function Phares() {
                   style={{
                     borderRadius: 28,
                     background: "#fff",
+                    borderTop: "3px solid #A52520",
                     border: ph.featured
                       ? `2.5px solid ${ph.solidBg}`
-                      : "1.5px solid rgba(29,93,43,0.08)",
+                      : "1.5px solid rgba(165,37,32,0.15)",
+                    borderTopWidth: 3,
+                    borderTopColor: "#A52520",
                     boxShadow: ph.featured
                       ? `0 8px 32px ${ph.glow}, 0 2px 8px rgba(0,0,0,0.06)`
                       : "0 4px 20px rgba(29,93,43,0.07)",
@@ -113,8 +120,8 @@ export default function Phares() {
                   }}
                   onMouseEnter={e => {
                     (e.currentTarget as HTMLElement).style.boxShadow =
-                      `0 24px 64px ${ph.glow}, 0 4px 16px rgba(0,0,0,0.10)`;
-                    (e.currentTarget as HTMLElement).style.borderColor = ph.solidBg;
+                      `0 24px 64px rgba(165,37,32,0.18), 0 4px 16px rgba(0,0,0,0.10)`;
+                    (e.currentTarget as HTMLElement).style.borderColor = "#A52520";
                   }}
                   onMouseLeave={e => {
                     (e.currentTarget as HTMLElement).style.boxShadow = ph.featured
@@ -122,13 +129,20 @@ export default function Phares() {
                       : "0 4px 20px rgba(29,93,43,0.07)";
                     (e.currentTarget as HTMLElement).style.borderColor = ph.featured
                       ? ph.solidBg
-                      : "rgba(29,93,43,0.08)";
+                      : "rgba(165,37,32,0.15)";
                   }}
                 >
+                  {/* Badge rouge — toujours visible */}
+                  <div
+                    className="absolute top-3 right-3 z-20 px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest whitespace-nowrap"
+                    style={{ background: "#A52520", color: "#fff", boxShadow: "0 2px 8px rgba(165,37,32,0.35)" }}
+                  >
+                    {ph.badge}
+                  </div>
                   {/* Featured ribbon */}
                   {ph.featured && (
                     <div
-                      className="absolute top-4 left-1/2 -translate-x-1/2 z-20 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap"
+                      className="absolute top-3 left-1/2 -translate-x-1/2 z-20 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap"
                       style={{ background: ph.solidBg, color: ph.accent, boxShadow: `0 4px 16px ${ph.glow}` }}
                     >
                       ⭐ Bestseller
@@ -235,7 +249,7 @@ export default function Phares() {
               style={{
                 width: i === 1 ? 20 : 6,
                 height: 6,
-                background: i === 1 ? "#1D5D2B" : "rgba(29,93,43,0.2)",
+                background: i === 1 ? "#A52520" : "rgba(165,37,32,0.25)",
               }}
             />
           ))}

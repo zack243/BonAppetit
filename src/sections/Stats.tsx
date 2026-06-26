@@ -41,7 +41,7 @@ function StatItem({ value, suffix, label, delay, started }: {
         style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px)", backgroundSize: "18px 18px" }} />
 
       <div className="relative z-10">
-        <div className="font-black leading-none mb-2" style={{ fontSize: "clamp(2.4rem, 6vw, 4rem)", color: "#F4D233" }}>
+        <div className="font-black leading-none mb-2" style={{ fontSize: "clamp(2.4rem, 6vw, 4rem)", color: "#A52520" }}>
           {isNumeric ? count.toLocaleString() : value}{suffix}
         </div>
         <p className="text-white/80 font-semibold text-sm uppercase tracking-widest">{label}</p>
@@ -69,14 +69,14 @@ export default function Stats() {
   const items = t("stats.items") as Array<{ value: string; suffix: string; label: string }>;
 
   return (
-    <section id="chiffres" ref={sectionRef} className="py-20 lg:py-28 overflow-hidden" style={{ background: "#1D5D2B" }}>
+    <section id="chiffres" ref={sectionRef} className="py-20 lg:py-28 overflow-hidden" style={{ background: "#026D41" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="sr text-center mb-14">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5 text-xs font-black uppercase tracking-widest"
-            style={{ background: "rgba(244,210,51,0.15)", color: "#F4D233", border: "1px solid rgba(244,210,51,0.3)" }}>
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#F4D233" }} />
+            style={{ background: "rgba(253,234,2,0.15)", color: "#FDEA02", border: "1px solid rgba(253,234,2,0.3)" }}>
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#FDEA02" }} />
             {t("stats.badge") as string}
           </span>
           <h2 className="font-black text-white leading-tight" style={{ fontSize: "clamp(1.8rem,4vw,3rem)" }}>

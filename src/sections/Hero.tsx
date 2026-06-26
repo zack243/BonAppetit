@@ -6,9 +6,9 @@ import Image from "next/image";
 import { useLanguage } from "@/components/LanguageProvider";
 
 const PRODUCTS = [
-  { src: "/products/mayonnaise.png",  name: "Mayonnaise",  size: "250ml", bg: "#F4D233", accent: "#1D5D2B" },
-  { src: "/products/lait-1800.png",   name: "Lait 1.8kg",  size: "1.8kg", bg: "#1D5D2B", accent: "#F4D233" },
-  { src: "/products/corned-beef.png", name: "Corned Beef", size: "340g",  bg: "#D92525", accent: "#fff"    },
+  { src: "/products/mayonnaise.png",              name: "Mayonnaise",        size: "250ml", bg: "#FDEA02", accent: "#026D41", redBorder: false },
+  { src: "/products/Milk Powder - 900gm.png",     name: "Lait en Poudre",    size: "900g",  bg: "#026D41", accent: "#FDEA02", redBorder: false },
+  { src: "/products/corned-beef.png",             name: "Corned Beef",       size: "340g",  bg: "#A52520", accent: "#fff",    redBorder: true  },
 ];
 
 const POS = [
@@ -30,8 +30,8 @@ export default function Hero() {
   return (
     <section
       id="accueil"
-      className="relative overflow-hidden bg-[#1D5D2B]"
-      style={{ height: "100dvh", minHeight: "580px", maxHeight: "960px" }}
+      className="relative overflow-hidden"
+      style={{ background: "#026D41", height: "100dvh", minHeight: "580px", maxHeight: "960px" }}
       aria-label="Section heros Bon Appetit"
     >
       {/* Dot texture */}
@@ -95,6 +95,7 @@ export default function Hero() {
                         background: p.bg,
                         overflow: "hidden",
                         boxShadow: isCenter ? "0 24px 60px rgba(0,0,0,0.45)" : "0 12px 32px rgba(0,0,0,0.28)",
+                        border: p.redBorder ? "2.5px solid #A52520" : (isCenter ? "2px solid rgba(255,255,255,0.18)" : "1px solid rgba(255,255,255,0.10)"),
                       }}
                     >
                       <div className="absolute inset-0 pointer-events-none"
@@ -145,8 +146,10 @@ export default function Hero() {
               whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.92 }}
               onClick={() => setCardIndex((i) => (i - 1 + PRODUCTS.length) % PRODUCTS.length)}
               aria-label="Produit precedent"
-              className="flex items-center justify-center rounded-full"
+              className="flex items-center justify-center rounded-full transition-all duration-200"
               style={{ width: 44, height: 44, background: "rgba(255,255,255,0.15)", border: "1.5px solid rgba(255,255,255,0.3)" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#A52520"; (e.currentTarget as HTMLElement).style.borderColor = "#A52520"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.15)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.3)"; }}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5"><path d="M15 18l-6-6 6-6" /></svg>
             </motion.button>
@@ -158,7 +161,7 @@ export default function Hero() {
                     key={i}
                     onClick={() => setCardIndex(i)}
                     aria-label={"Produit " + (i + 1)}
-                    animate={{ width: isActive ? 28 : 8, backgroundColor: isActive ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.35)" }}
+                    animate={{ width: isActive ? 28 : 8, backgroundColor: isActive ? "#A52520" : "rgba(255,255,255,0.35)" }}
                     transition={{ duration: 0.4 }}
                     className="h-2 rounded-full border-none cursor-pointer"
                     style={{ padding: 0, minWidth: 8 }}
@@ -170,8 +173,10 @@ export default function Hero() {
               whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.92 }}
               onClick={() => setCardIndex((i) => (i + 1) % PRODUCTS.length)}
               aria-label="Produit suivant"
-              className="flex items-center justify-center rounded-full"
+              className="flex items-center justify-center rounded-full transition-all duration-200"
               style={{ width: 44, height: 44, background: "rgba(255,255,255,0.15)", border: "1.5px solid rgba(255,255,255,0.3)" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#A52520"; (e.currentTarget as HTMLElement).style.borderColor = "#A52520"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.15)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.3)"; }}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5"><path d="M9 18l6-6-6-6" /></svg>
             </motion.button>
@@ -180,27 +185,28 @@ export default function Hero() {
           {/* Yellow CTA card */}
           <div className="w-full max-w-[620px]">
             <div style={{
-              background: "#F4D233",
+              background: "#FDEA02",
               borderRadius: 22,
               padding: "22px 28px",
-              boxShadow: "0 12px 50px rgba(244,210,51,0.35), 0 4px 20px rgba(0,0,0,0.10)",
+              borderTop: "3px solid #A52520",
+              boxShadow: "0 12px 50px rgba(253,234,2,0.35), 0 4px 20px rgba(0,0,0,0.10)",
               display: "flex",
               alignItems: "center",
               gap: 24,
             }}>
               <div className="flex-1 min-w-0">
                 <div className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 mb-3 w-fit"
-                  style={{ background: "rgba(29,93,43,0.10)", border: "1px solid rgba(29,93,43,0.15)" }}>
-                  <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#1D5D2B" }} />
-                  <span className="font-black text-[8px] uppercase tracking-[0.12em]" style={{ color: "#1D5D2B" }}>
+                  style={{ background: "#A52520", border: "1px solid #A52520" }}>
+                  <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#FDEA02" }} />
+                  <span className="font-black text-[8px] uppercase tracking-[0.12em]" style={{ color: "#fff" }}>
                     {t("hero.tagline") as string}
                   </span>
                 </div>
-                <h1 className="font-black leading-[1.15] mb-2" style={{ color: "#1D5D2B", fontSize: "clamp(1.2rem,2.2vw,1.75rem)" }}>
+                <h1 className="font-black leading-[1.15] mb-2" style={{ color: "#026D41", fontSize: "clamp(1.2rem,2.2vw,1.75rem)" }}>
                   {t("hero.line1") as string}{" "}
-                  <span>{t("hero.line2") as string}</span>
+                  <span style={{ color: "#A52520" }}>{t("hero.line2") as string}</span>
                 </h1>
-                <p className="leading-[1.55]" style={{ color: "rgba(29,93,43,0.80)", fontSize: "clamp(0.72rem,0.9vw,0.82rem)" }}>
+                <p className="leading-[1.55]" style={{ color: "rgba(2,109,65,0.80)", fontSize: "clamp(0.72rem,0.9vw,0.82rem)" }}>
                   {t("hero.subtitle") as string}
                 </p>
               </div>
@@ -209,7 +215,7 @@ export default function Hero() {
                   href="#produits"
                   whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
                   className="inline-flex items-center gap-2 font-black rounded-full whitespace-nowrap"
-                  style={{ background: "#1D5D2B", color: "#F4D233", fontSize: "0.84rem", padding: "11px 26px" }}
+                  style={{ background: "#026D41", color: "#FDEA02", fontSize: "0.84rem", padding: "11px 26px" }}
                 >
                   {t("hero.ctaPrimary") as string}
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -217,8 +223,8 @@ export default function Hero() {
                   </svg>
                 </motion.a>
                 <a href="#apropos"
-                  className="inline-flex items-center justify-center whitespace-nowrap"
-                  style={{ color: "rgba(29,93,43,0.70)", fontSize: "0.76rem" }}>
+                  className="inline-flex items-center justify-center whitespace-nowrap font-semibold underline underline-offset-2"
+                  style={{ color: "#A52520", fontSize: "0.76rem" }}>
                   {t("hero.ctaSecondary") as string}
                 </a>
               </div>
@@ -238,29 +244,29 @@ export default function Hero() {
 
         <div className="shrink-0 px-4 pb-2" style={{ marginTop: -16, zIndex: 10, position: "relative" }}>
           <div className="w-full rounded-2xl px-4 py-3.5 flex flex-col gap-1.5"
-            style={{ background: "#F4D233", boxShadow: "0 8px 32px rgba(244,210,51,0.35)" }}>
+            style={{ background: "#FDEA02", boxShadow: "0 8px 32px rgba(253,234,2,0.35)", borderTop: "3px solid #A52520" }}>
             <div className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 w-fit"
-              style={{ background: "rgba(29,93,43,0.10)", border: "1px solid rgba(29,93,43,0.15)" }}>
-              <span className="w-1 h-1 rounded-full animate-pulse" style={{ background: "#1D5D2B" }} />
-              <span className="font-black text-[7px] uppercase tracking-[0.12em]" style={{ color: "#1D5D2B" }}>
+              style={{ background: "#A52520" }}>
+              <span className="w-1 h-1 rounded-full animate-pulse" style={{ background: "#FDEA02" }} />
+              <span className="font-black text-[7px] uppercase tracking-[0.12em]" style={{ color: "#fff" }}>
                 {t("hero.tagline") as string}
               </span>
             </div>
-            <h1 className="font-black leading-tight text-lg" style={{ color: "#1D5D2B" }}>
-              {t("hero.line1") as string}{" "}{t("hero.line2") as string}
+            <h1 className="font-black leading-tight text-lg" style={{ color: "#026D41" }}>
+              {t("hero.line1") as string}{" "}<span style={{ color: "#A52520" }}>{t("hero.line2") as string}</span>
             </h1>
-            <p className="text-[11px] leading-snug" style={{ color: "rgba(29,93,43,0.80)" }}>
+            <p className="text-[11px] leading-snug" style={{ color: "rgba(2,109,65,0.80)" }}>
               {t("hero.subtitle") as string}
             </p>
             <div className="flex items-center gap-3 mt-0.5">
               <a href="#produits" className="inline-flex items-center gap-1.5 px-4 py-2 font-black rounded-full text-xs"
-                style={{ background: "#1D5D2B", color: "#F4D233" }}>
+                style={{ background: "#026D41", color: "#FDEA02" }}>
                 {t("hero.ctaPrimary") as string}
                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </a>
-              <a href="#apropos" className="text-[11px]" style={{ color: "rgba(29,93,43,0.70)" }}>
+              <a href="#apropos" className="text-[11px] font-semibold underline underline-offset-2" style={{ color: "#A52520" }}>
                 {t("hero.ctaSecondary") as string}
               </a>
             </div>

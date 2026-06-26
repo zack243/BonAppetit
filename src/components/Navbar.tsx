@@ -70,12 +70,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-14 md:h-16">
 
           {/* Logo */}
-          <Link href={`/${locale}/`} className="flex-shrink-0 relative" style={{ width: 148, height: 46 }}>
+          <Link href={`/${locale}/`} className="flex-shrink-0 relative" style={{ width: 172, height: 54 }}>
             <Image
               src="/logo.png"
               alt="Bon Appétit"
               fill
-              sizes="148px"
+              sizes="172px"
               className="object-contain"
               priority
             />
@@ -87,10 +87,10 @@ export default function Navbar() {
               <a
                 key={link.anchor}
                 href={link.anchor}
-                className="px-3 lg:px-4 py-2 text-sm font-semibold rounded-full transition-colors"
+                className="px-3 lg:px-4 py-2 text-sm font-semibold rounded-full transition-all duration-200 relative group"
                 style={{ color: "#026D41" }}
-                onMouseEnter={e => (e.currentTarget.style.background = "rgba(2,109,65,0.10)")}
-                onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#A52520"; (e.currentTarget as HTMLElement).style.background = "rgba(165,37,32,0.08)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "#026D41"; (e.currentTarget as HTMLElement).style.background = "transparent"; }}
               >
                 {link.label}
               </a>
@@ -112,8 +112,8 @@ export default function Navbar() {
                   className="w-8 h-8 flex items-center justify-center rounded-full transition-all duration-200"
                   style={{ color: "#026D41" }}
                   onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.background = "#026D41";
-                    (e.currentTarget as HTMLElement).style.color = "#FDEA02";
+                    (e.currentTarget as HTMLElement).style.background = "#A52520";
+                    (e.currentTarget as HTMLElement).style.color = "#fff";
                   }}
                   onMouseLeave={e => {
                     (e.currentTarget as HTMLElement).style.background = "transparent";

@@ -31,6 +31,8 @@ function VideoCard({ video, index }: { video: typeof VIDEOS[0]; index: number })
         boxShadow: "0 4px 24px rgba(29,93,43,0.10)",
         border: "1.5px solid rgba(29,93,43,0.07)",
       }}
+      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(165,37,32,0.30)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 12px 40px rgba(165,37,32,0.12)"; }}
+      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(29,93,43,0.07)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 24px rgba(29,93,43,0.10)"; }}
     >
       {/* Thumbnail / Player */}
       <div className="relative overflow-hidden" style={{ aspectRatio: "16/9" }}>
@@ -64,9 +66,9 @@ function VideoCard({ video, index }: { video: typeof VIDEOS[0]; index: number })
                 whileHover={{ scale: 1.12 }}
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center justify-center rounded-full shadow-2xl"
-                style={{ width: 60, height: 60, background: "#F4D233" }}
+                style={{ width: 60, height: 60, background: "#A52520" }}
               >
-                <svg className="w-6 h-6 ml-1" fill="#1D5D2B" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 ml-1" fill="#fff" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </motion.div>
@@ -74,7 +76,7 @@ function VideoCard({ video, index }: { video: typeof VIDEOS[0]; index: number })
 
             {/* Category pill */}
             <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-widest"
-              style={{ background: "#F4D233", color: "#1D5D2B" }}>
+              style={{ background: "#A52520", color: "#fff" }}>
               {video.cat}
             </div>
 
@@ -90,7 +92,7 @@ function VideoCard({ video, index }: { video: typeof VIDEOS[0]; index: number })
 
       {/* Card content */}
       <div className="p-4">
-        <h3 className="font-black text-[#1a1a1a] text-sm leading-tight mb-3 group-hover:text-[#1D5D2B] transition-colors line-clamp-2">
+        <h3 className="font-black text-[#1a1a1a] text-sm leading-tight mb-3 group-hover:text-[#A52520] transition-colors line-clamp-2">
           {video.title}
         </h3>
         <div className="flex items-center justify-between">
@@ -103,7 +105,7 @@ function VideoCard({ video, index }: { video: typeof VIDEOS[0]; index: number })
           <button
             onClick={() => setPlaying(true)}
             className="inline-flex items-center gap-1 text-xs font-black transition-all group-hover:gap-2"
-            style={{ color: "#1D5D2B" }}
+            style={{ color: "#A52520" }}
           >
             Voir la recette
             <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -126,14 +128,14 @@ export default function Recipes() {
   }, []);
 
   return (
-    <section id="recettes" ref={sectionRef} className="py-20 lg:py-28 overflow-hidden" style={{ background: "#FFF8EC" }}>
+    <section id="recettes" ref={sectionRef} className="py-20 lg:py-28 overflow-hidden" style={{ background: "#FFF6E1" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="sr text-center mb-14">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5 text-xs font-black uppercase tracking-widest"
-            style={{ background: "rgba(29,93,43,0.08)", color: "#1D5D2B" }}>
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#1D5D2B" }} />
+            style={{ background: "rgba(165,37,32,0.08)", color: "#A52520" }}>
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#A52520" }} />
             {t("recipes.badge") as string}
           </span>
           <h2 className="font-black text-[#222] leading-tight mb-3" style={{ fontSize: "clamp(1.8rem,4vw,3rem)" }}>
