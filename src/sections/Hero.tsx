@@ -73,7 +73,7 @@ export default function Hero() {
               exit="exit"
               transition={{ duration: 1.1, ease: "easeInOut" }}
               className="absolute"
-              style={{ inset: 0, padding: "5% 8% 0" }}
+              style={{ inset: 0, padding: "18% 8% 0" }}
             >
               <Image
                 src={HERO_SLIDES[heroSlide].src}
@@ -292,7 +292,7 @@ export default function Hero() {
               exit="exit"
               transition={{ duration: 1.1, ease: "easeInOut" }}
               className="absolute"
-              style={{ inset: 0, padding: "4% 6% 0" }}
+              style={{ inset: 0, padding: "14% 6% 0" }}
             >
               <Image
                 src={HERO_SLIDES[heroSlide].src}
