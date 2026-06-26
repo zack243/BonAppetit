@@ -1,14 +1,20 @@
 ﻿"use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useLanguage } from "@/components/LanguageProvider";
 
+const HERO_SLIDES = [
+  { src: "/hero1.png",               alt: "Bon Appétit — Votre Cuisine Complète" },
+  { src: "/bonappetit hero2.png",    alt: "Bon Appétit — Gamme Complète" },
+  { src: "/bonappetit hero3.png",    alt: "Bon Appétit — Qualité & Saveur" },
+];
+
 const PRODUCTS = [
-  { src: "/products/mayonnaise.png",              name: "Mayonnaise",        size: "250ml", bg: "#FDEA02", accent: "#026D41", redBorder: false },
-  { src: "/products/Milk Powder - 900gm.png",     name: "Lait en Poudre",    size: "900g",  bg: "#026D41", accent: "#FDEA02", redBorder: false },
-  { src: "/products/corned-beef.png",             name: "Corned Beef",       size: "340g",  bg: "#A52520", accent: "#fff",    redBorder: true  },
+  { src: "/products/mayonnaise.png",              name: "Mayonnaise",     size: "250ml", bg: "#FDEA02", accent: "#026D41", redBorder: false },
+  { src: "/products/Milk Powder - 900gm.png",     name: "Lait en Poudre", size: "900g",  bg: "#026D41", accent: "#FDEA02", redBorder: false },
+  { src: "/products/ketchup.png",                 name: "Ketchup",        size: "340g",  bg: "#A52520", accent: "#fff",    redBorder: true  },
 ];
 
 const POS = [
@@ -18,12 +24,24 @@ const POS = [
 ];
 
 
+const slideVariants = {
+  enter: { opacity: 0, scale: 1.06 },
+  center: { opacity: 1, scale: 1 },
+  exit: { opacity: 0, scale: 0.97 },
+};
+
 export default function Hero() {
   const { t } = useLanguage();
   const [cardIndex, setCardIndex] = useState(0);
+  const [heroSlide, setHeroSlide] = useState(0);
 
   useEffect(() => {
     const id = setInterval(() => setCardIndex((i) => (i + 1) % PRODUCTS.length), 5000);
+    return () => clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    const id = setInterval(() => setHeroSlide((i) => (i + 1) % HERO_SLIDES.length), 5000);
     return () => clearInterval(id);
   }, []);
 
@@ -43,24 +61,52 @@ export default function Hero() {
       {/* DESKTOP */}
       <div className="hidden lg:flex absolute inset-0" style={{ paddingTop: 64 }}>
 
-        {/* LEFT 45% — Hero image */}
+        {/* LEFT 45% — Hero image slider */}
         <div className="relative shrink-0 overflow-hidden"
-          style={{ width: "45%", height: "100%", display: "flex", alignItems: "flex-end", paddingLeft: "5%" }}>
-          <div className="relative w-full h-full">
-            <Image
-              src="/hero1.png"
-              alt="Bon Appetit — Votre Cuisine Complete"
-              fill
-              priority
-              fetchPriority="high"
-              sizes="45vw"
-              quality={80}
-              className="object-contain"
-              style={{ objectPosition: "bottom center" }}
-            />
-            <div className="absolute bottom-0 left-0 right-0 h-16 pointer-events-none"
-              style={{ background: "radial-gradient(ellipse 80% 40% at 50% 100%, rgba(0,0,0,0.28) 0%, transparent 70%)" }}
-            />
+          style={{ width: "45%", height: "100%" }}>
+          <AnimatePresence mode="sync">
+            <motion.div
+              key={heroSlide}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 1.1, ease: "easeInOut" }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={HERO_SLIDES[heroSlide].src}
+                alt={HERO_SLIDES[heroSlide].alt}
+                fill
+                priority={heroSlide === 0}
+                fetchPriority={heroSlide === 0 ? "high" : "auto"}
+                sizes="45vw"
+                quality={80}
+                className="object-contain"
+                style={{ objectPosition: "bottom center" }}
+              />
+            </motion.div>
+          </AnimatePresence>
+          {/* Bottom vignette */}
+          <div className="absolute bottom-0 left-0 right-0 h-16 pointer-events-none z-10"
+            style={{ background: "radial-gradient(ellipse 80% 40% at 50% 100%, rgba(0,0,0,0.28) 0%, transparent 70%)" }}
+          />
+          {/* Hero slide dots */}
+          <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-20">
+            {HERO_SLIDES.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setHeroSlide(i)}
+                aria-label={`Slide ${i + 1}`}
+                className="rounded-full border-none cursor-pointer transition-all duration-300"
+                style={{
+                  width: i === heroSlide ? 24 : 7,
+                  height: 7,
+                  padding: 0,
+                  background: i === heroSlide ? "#A52520" : "rgba(255,255,255,0.45)",
+                }}
+              />
+            ))}
           </div>
         </div>
 
@@ -236,10 +282,47 @@ export default function Hero() {
       {/* MOBILE */}
       <div className="lg:hidden flex flex-col" style={{ minHeight: "92svh", maxHeight: "720px", paddingTop: 60 }}>
         <div className="relative flex-1 overflow-hidden" style={{ minHeight: "38%", maxHeight: "50%" }}>
-          <Image src="/hero1.png" alt="Bon Appetit" fill priority sizes="100vw" quality={75}
-            className="object-contain" style={{ objectPosition: "bottom center" }} />
-          <div className="absolute bottom-0 left-0 right-0 h-10 pointer-events-none"
+          <AnimatePresence mode="sync">
+            <motion.div
+              key={heroSlide}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 1.1, ease: "easeInOut" }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={HERO_SLIDES[heroSlide].src}
+                alt={HERO_SLIDES[heroSlide].alt}
+                fill
+                priority={heroSlide === 0}
+                sizes="100vw"
+                quality={75}
+                className="object-contain"
+                style={{ objectPosition: "bottom center" }}
+              />
+            </motion.div>
+          </AnimatePresence>
+          <div className="absolute bottom-0 left-0 right-0 h-10 pointer-events-none z-10"
             style={{ background: "linear-gradient(to top, rgba(29,93,43,0.6), transparent)" }} />
+          {/* Mobile slide dots */}
+          <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-20">
+            {HERO_SLIDES.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setHeroSlide(i)}
+                aria-label={`Slide ${i + 1}`}
+                className="rounded-full border-none cursor-pointer transition-all duration-300"
+                style={{
+                  width: i === heroSlide ? 18 : 6,
+                  height: 6,
+                  padding: 0,
+                  background: i === heroSlide ? "#A52520" : "rgba(255,255,255,0.45)",
+                }}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="shrink-0 px-4 pb-2" style={{ marginTop: -16, zIndex: 10, position: "relative" }}>
